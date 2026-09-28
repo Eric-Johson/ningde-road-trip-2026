@@ -1,0 +1,1385 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026年国庆厦门—永泰—霞浦—宁德五天亲子自驾路书，含交互地图、逐日行程、推荐美食与避峰提示。">
+  <meta name="theme-color" content="#12313b">
+  <title>沿山入海，向宁德去｜2026 国庆五日亲子自驾路书</title>
+  <style>
+    :root {
+      --ocean: #12313b;
+      --ocean-deep: #0a222a;
+      --mist: #dcece8;
+      --mist-light: #edf5f2;
+      --forest: #2d6a55;
+      --forest-dark: #1f4d3e;
+      --sunset: #f07855;
+      --sunset-light: #fff0e9;
+      --rock: #65767a;
+      --paper: #f5f7f3;
+      --white: #ffffff;
+      --ink: #173038;
+      --line: rgba(18, 49, 59, 0.16);
+      --shadow: 0 18px 55px rgba(18, 49, 59, 0.12);
+      --shadow-small: 0 8px 24px rgba(18, 49, 59, 0.09);
+      --radius: 22px;
+      --display: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      --body: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", "Cascadia Mono", "Roboto Mono", monospace;
+      --content: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 5%, rgba(220, 236, 232, 0.95), transparent 25rem),
+        var(--paper);
+      font-family: var(--body);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .28;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+      z-index: 20;
+    }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid var(--sunset); outline-offset: 4px; }
+    .skip-link {
+      position: fixed;
+      left: 1rem;
+      top: 1rem;
+      transform: translateY(-160%);
+      z-index: 9999;
+      padding: .7rem 1rem;
+      background: var(--white);
+      color: var(--ocean);
+      border-radius: 10px;
+      box-shadow: var(--shadow-small);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .shell { width: min(calc(100% - 40px), var(--content)); margin-inline: auto; }
+    .eyebrow {
+      margin: 0 0 .55rem;
+      color: var(--forest);
+      font-family: var(--mono);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .section-heading { max-width: 720px; margin-bottom: 2.2rem; }
+    .section-heading h2 {
+      margin: 0 0 .65rem;
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -.03em;
+    }
+    .section-heading p { margin: 0; color: var(--rock); font-size: 1.03rem; }
+    .section { padding: 6.5rem 0; }
+    .section--tint { background: var(--mist-light); border-block: 1px solid rgba(45, 106, 85, .12); }
+
+    /* Navigation */
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 1000;
+      color: var(--white);
+    }
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+    .brand { display: flex; align-items: center; gap: .8rem; text-decoration: none; font-weight: 800; letter-spacing: .06em; }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.42);
+      border-radius: 50%;
+      font-family: var(--display);
+      font-size: 1.2rem;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.7rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { color: rgba(255,255,255,.86); text-decoration: none; font-size: .9rem; font-weight: 650; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 50%;
+      color: var(--white);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 790px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 82% 32%, rgba(240,120,85,.38), transparent 18rem),
+        radial-gradient(circle at 72% 58%, rgba(45,106,85,.58), transparent 28rem),
+        linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean) 58%, #1c4d55 100%);
+    }
+    .hero-contours { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .3; }
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      padding-top: 8.5rem;
+      padding-bottom: 5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr);
+      gap: 5rem;
+      align-items: end;
+    }
+    .hero-kicker { color: #a8d8cb; }
+    .hero h1 {
+      max-width: 780px;
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(3.7rem, 8.5vw, 7.2rem);
+      font-weight: 700;
+      line-height: .98;
+      letter-spacing: -.06em;
+    }
+    .hero h1 span { display: block; color: #b9ddd4; font-size: .52em; margin-top: .26em; letter-spacing: .06em; }
+    .hero-lede { max-width: 610px; margin: 1.6rem 0 0; color: rgba(255,255,255,.72); font-size: 1.08rem; }
+    .route-stamp {
+      padding: 1.4rem;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 120px 120px 22px 22px;
+      background: rgba(7, 29, 35, .3);
+      backdrop-filter: blur(10px);
+    }
+    .route-stamp-label { margin: 0; text-align: center; color: #a8d8cb; font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; }
+    .route-stamp-core {
+      width: 190px;
+      aspect-ratio: 1;
+      margin: 1.2rem auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+      text-align: center;
+    }
+    .route-stamp-core strong { display: block; font-family: var(--display); font-size: 4rem; line-height: 1; }
+    .route-stamp-core small { color: rgba(255,255,255,.62); letter-spacing: .1em; }
+    .route-stamp p:last-child { margin: 0; text-align: center; font-size: .87rem; color: rgba(255,255,255,.78); }
+    .route-ribbon {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      min-height: 112px;
+      margin-top: -56px;
+      color: var(--ocean);
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .route-node { position: relative; display: flex; align-items: center; gap: .85rem; padding: 1.25rem 1.2rem; border-right: 1px solid var(--line); }
+    .route-node:last-child { border-right: 0; }
+    .route-node::after { content: "→"; position: absolute; right: -.44rem; color: var(--sunset); z-index: 2; font-weight: 900; }
+    .route-node:last-child::after { content: "↺"; right: 1rem; }
+    .node-no { flex: 0 0 30px; height: 30px; display: grid; place-items: center; color: var(--white); background: var(--forest); border-radius: 50%; font: 700 .72rem var(--mono); }
+    .route-node:first-child .node-no, .route-node:last-child .node-no { background: var(--ocean); }
+    .route-node strong { display: block; font-size: .98rem; }
+    .route-node small { display: block; color: var(--rock); font-size: .72rem; }
+
+    /* Overview */
+    .overview-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 4rem; align-items: start; }
+    .trip-thesis { padding-right: 2rem; }
+    .trip-thesis blockquote {
+      margin: 0 0 2rem;
+      font-family: var(--display);
+      font-size: clamp(1.65rem, 3vw, 2.45rem);
+      line-height: 1.35;
+    }
+    .trip-thesis blockquote em { color: var(--forest); font-style: normal; }
+    .trip-thesis > p { color: var(--rock); }
+    .button-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      padding: .76rem 1.15rem;
+      border: 1px solid var(--ocean);
+      border-radius: 999px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--primary { color: var(--white); background: var(--ocean); }
+    .btn--secondary { color: var(--ocean); background: transparent; }
+    .btn--small { min-height: 39px; padding: .48rem .8rem; font-size: .82rem; }
+    .fact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; border: 1px solid var(--line); background: var(--line); border-radius: var(--radius); overflow: hidden; }
+    .fact { min-height: 148px; padding: 1.4rem; background: var(--white); }
+    .fact span { display: block; color: var(--rock); font-size: .78rem; }
+    .fact strong { display: block; margin: .28rem 0; font-family: var(--display); font-size: 2.25rem; line-height: 1.1; }
+    .fact small { color: var(--forest); font-size: .72rem; }
+
+    /* Map */
+    .map-layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(290px, .45fr); gap: 1.25rem; align-items: stretch; }
+    .map-frame { position: relative; min-height: 610px; background: #c9ddd8; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    #trip-map {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 28% 42%, rgba(45,106,85,.09) 0 2px, transparent 3px),
+        linear-gradient(135deg, #e8f1ed 0%, #cfdfd8 100%);
+      background-size: 22px 22px, auto;
+    }
+    .map-context-label { background: transparent; border: 0; color: rgba(18,49,59,.55); font: 800 .72rem var(--body); letter-spacing: .08em; white-space: nowrap; text-shadow: 0 1px 0 rgba(255,255,255,.9); }
+    .map-context-label--sea { color: rgba(52,107,124,.58); font-family: var(--display); font-size: 1rem; letter-spacing: .3em; }
+    .stop-name-label { padding: .24rem .48rem; color: var(--ocean); background: rgba(255,255,255,.9); border: 1px solid rgba(18,49,59,.14); border-radius: 7px; box-shadow: 0 3px 10px rgba(18,49,59,.08); font: 800 .72rem var(--body); }
+    .stop-name-label::before { display: none; }
+    .amap-stop-marker { display: flex; align-items: center; gap: .42rem; white-space: nowrap; filter: drop-shadow(0 4px 8px rgba(18,49,59,.22)); }
+    .amap-stop-marker span { width: 34px; height: 34px; display: grid; place-items: center; color: var(--white); background: var(--ocean); border: 3px solid var(--white); border-radius: 50%; font: 900 .72rem var(--mono); }
+    .amap-stop-marker b { padding: .28rem .52rem; color: var(--ocean); background: rgba(255,255,255,.94); border: 1px solid rgba(18,49,59,.14); border-radius: 7px; font-size: .74rem; }
+    .amap-info { min-width: 150px; padding: .2rem .15rem; color: var(--ink); font-family: var(--body); line-height: 1.6; }
+    .amap-info strong { font-family: var(--display); font-size: 1.1rem; }
+    .map-loading { color: var(--forest); font-weight: 800; }
+    .offline-map-key { padding: .42rem .58rem; color: var(--ocean); background: rgba(255,255,255,.86); border: 1px solid rgba(18,49,59,.12); border-radius: 7px; box-shadow: 0 3px 12px rgba(18,49,59,.08); font: 700 .66rem var(--mono); }
+    .leaflet-container { font-family: var(--body); }
+    .map-status {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 500;
+      display: none;
+      padding: .8rem 1rem;
+      color: var(--ocean);
+      background: rgba(255,255,255,.94);
+      border-radius: 12px;
+      box-shadow: var(--shadow-small);
+      font-size: .85rem;
+    }
+    .map-note {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 500;
+      max-width: 210px;
+      padding: .7rem .85rem;
+      color: var(--ocean);
+      background: rgba(255,255,255,.9);
+      border-left: 3px solid var(--sunset);
+      border-radius: 8px;
+      box-shadow: var(--shadow-small);
+      font-size: .72rem;
+    }
+    .map-sidebar { display: flex; flex-direction: column; padding: 1.5rem; color: var(--white); background: var(--ocean); border-radius: var(--radius); }
+    .map-sidebar h3 { margin: .2rem 0 .4rem; font-family: var(--display); font-size: 1.65rem; }
+    .map-sidebar > p { margin: 0; color: rgba(255,255,255,.62); font-size: .82rem; }
+    .route-ledger { list-style: none; margin: 1.3rem 0; padding: 0; counter-reset: stop; }
+    .route-ledger li { counter-increment: stop; position: relative; padding: .15rem 0 1.1rem 2.6rem; }
+    .route-ledger li:not(:last-child)::before { content: ""; position: absolute; left: .82rem; top: 1.35rem; bottom: 0; width: 1px; background: rgba(255,255,255,.22); }
+    .route-ledger li::after { content: counter(stop); position: absolute; left: 0; top: 0; width: 1.65rem; height: 1.65rem; display: grid; place-items: center; color: var(--ocean); background: var(--mist); border-radius: 50%; font: 800 .68rem var(--mono); }
+    .route-ledger strong { display: block; font-size: .92rem; }
+    .route-ledger small { color: rgba(255,255,255,.56); }
+    .legend { margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.14); }
+    .legend-row { display: flex; align-items: center; gap: .55rem; margin-top: .55rem; font-size: .74rem; color: rgba(255,255,255,.7); }
+    .legend-line { width: 27px; height: 4px; border-radius: 9px; }
+    .custom-marker { display: grid; place-items: center; width: 34px !important; height: 34px !important; margin-left: -17px !important; margin-top: -17px !important; color: var(--white); background: var(--ocean); border: 3px solid var(--white); border-radius: 50%; box-shadow: 0 5px 16px rgba(18,49,59,.32); font: 900 .75rem var(--mono); }
+    .custom-marker span { display: block; line-height: 1; }
+    .leaflet-popup-content-wrapper { border-radius: 14px; box-shadow: var(--shadow-small); }
+    .leaflet-popup-content { font-family: var(--body); line-height: 1.55; }
+    .popup-day { color: var(--forest); font: 800 .68rem var(--mono); letter-spacing: .08em; }
+
+    /* Itinerary */
+    .timeline { position: relative; max-width: 970px; margin-inline: auto; }
+    .timeline::before { content: ""; position: absolute; left: 62px; top: 20px; bottom: 20px; width: 1px; background: var(--line); }
+    .day-row { position: relative; display: grid; grid-template-columns: 125px 1fr; gap: 1.5rem; margin-bottom: 1.35rem; }
+    .day-index { position: relative; z-index: 2; padding-top: 1.6rem; }
+    .day-index strong { display: block; width: 62px; height: 62px; margin-left: 31px; display: grid; place-items: center; color: var(--white); background: var(--forest); border: 7px solid var(--paper); border-radius: 50%; font: 800 1.15rem var(--mono); }
+    .day-index time { display: block; margin-top: .65rem; text-align: center; color: var(--rock); font: 700 .72rem var(--mono); }
+    details.day-card { background: var(--white); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow-small); overflow: hidden; }
+    details.day-card[open] { border-color: rgba(45,106,85,.3); }
+    details.day-card summary { list-style: none; cursor: pointer; padding: 1.5rem 1.6rem; }
+    details.day-card summary::-webkit-details-marker { display: none; }
+    .summary-line { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .summary-line h3 { margin: 0; font-family: var(--display); font-size: clamp(1.35rem, 3vw, 1.9rem); }
+    .summary-line h3 span { color: var(--sunset); }
+    .expand-mark { width: 32px; height: 32px; display: grid; place-items: center; flex: 0 0 32px; color: var(--forest); background: var(--mist-light); border-radius: 50%; transition: transform .2s ease; }
+    details[open] .expand-mark { transform: rotate(45deg); }
+    .day-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+    .chip { display: inline-flex; align-items: center; padding: .26rem .62rem; color: var(--forest-dark); background: var(--mist-light); border-radius: 999px; font-size: .72rem; font-weight: 700; }
+    .chip--warm { color: #9d432d; background: var(--sunset-light); }
+    .day-body { padding: 0 1.6rem 1.6rem; border-top: 1px solid var(--line); }
+    .schedule { list-style: none; margin: 1.3rem 0; padding: 0; }
+    .schedule li { display: grid; grid-template-columns: 90px 1fr; gap: 1rem; padding: .78rem 0; border-bottom: 1px dashed var(--line); }
+    .schedule li:last-child { border-bottom: 0; }
+    .schedule time { color: var(--forest); font: 800 .76rem var(--mono); }
+    .schedule strong { display: block; margin-bottom: .12rem; }
+    .schedule p { margin: 0; color: var(--rock); font-size: .88rem; }
+    .day-actions { display: flex; flex-wrap: wrap; gap: .7rem; padding-top: .3rem; }
+    .note-box { margin-top: 1rem; padding: 1rem; color: #74402f; background: var(--sunset-light); border-left: 3px solid var(--sunset); border-radius: 8px; font-size: .85rem; }
+
+    /* Food */
+    .food-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .food-card { position: relative; min-height: 345px; display: flex; flex-direction: column; padding: 1.35rem; background: var(--white); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+    .food-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-small); }
+    .food-card::before { content: attr(data-index); position: absolute; right: .8rem; top: -.8rem; color: rgba(18,49,59,.055); font: 800 7rem/1 var(--display); }
+    .food-location { color: var(--forest); font: 800 .72rem var(--mono); letter-spacing: .12em; }
+    .food-card h3 { margin: .6rem 0 1rem; font-family: var(--display); font-size: 1.8rem; }
+    .dish-list { list-style: none; margin: 0; padding: 0; }
+    .dish-list li { position: relative; padding: .55rem 0 .55rem 1rem; border-bottom: 1px dashed var(--line); }
+    .dish-list li::before { content: ""; position: absolute; left: 0; top: 1.15rem; width: 5px; height: 5px; background: var(--sunset); border-radius: 50%; }
+    .dish-list li:last-child { border-bottom: 0; }
+    .food-tip { margin: auto 0 0; padding-top: 1rem; color: var(--rock); font-size: .78rem; }
+
+    /* Tips */
+    .tips-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 3rem; align-items: start; }
+    .peak-card { position: sticky; top: 1.5rem; padding: 2rem; color: var(--white); background: var(--ocean); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .peak-card h3 { margin: 0 0 .35rem; font-family: var(--display); font-size: 2rem; }
+    .peak-times { display: grid; gap: .8rem; margin-top: 1.5rem; }
+    .peak-time { padding: 1rem; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 13px; }
+    .peak-time span { display: block; color: #9ed0c3; font-size: .73rem; }
+    .peak-time strong { font: 700 1.35rem var(--mono); }
+    .peak-card small { display: block; margin-top: 1rem; color: rgba(255,255,255,.55); }
+    .checklist { display: grid; gap: .9rem; }
+    .check-item { display: grid; grid-template-columns: 42px 1fr; gap: 1rem; padding: 1.2rem; background: var(--white); border: 1px solid var(--line); border-radius: 14px; }
+    .check-icon { width: 42px; height: 42px; display: grid; place-items: center; color: var(--forest); background: var(--mist); border-radius: 50%; font-weight: 900; }
+    .check-item h3 { margin: .1rem 0 .25rem; font-size: 1rem; }
+    .check-item p { margin: 0; color: var(--rock); font-size: .86rem; }
+
+    /* Sources + footer */
+    .sources { padding: 3.5rem 0; color: rgba(255,255,255,.72); background: var(--ocean-deep); }
+    .sources-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 3rem; }
+    .sources h2 { margin: 0; color: var(--white); font-family: var(--display); font-size: 2rem; }
+    .source-links { display: grid; gap: .55rem; }
+    .source-links a { width: fit-content; color: #a8d8cb; text-underline-offset: 4px; }
+    .source-links a:hover { color: var(--white); }
+    .sources p { margin: .7rem 0 0; font-size: .82rem; }
+    .footer { padding: 1.2rem 0; color: rgba(255,255,255,.48); background: #06181e; font-size: .75rem; }
+    .footer .shell { display: flex; justify-content: space-between; gap: 1rem; }
+    .back-top {
+      position: fixed;
+      right: 1.2rem;
+      bottom: 1.2rem;
+      z-index: 900;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--sunset);
+      box-shadow: var(--shadow-small);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: .2s ease;
+    }
+    .back-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2.3rem; }
+      .route-stamp { display: none; }
+      .route-ribbon { grid-template-columns: repeat(5, minmax(130px, 1fr)); overflow-x: auto; }
+      .overview-grid, .map-layout, .tips-layout, .sources-grid { grid-template-columns: 1fr; }
+      .trip-thesis { padding-right: 0; }
+      .map-frame { min-height: 520px; }
+      .food-grid { grid-template-columns: repeat(2, 1fr); }
+      .peak-card { position: relative; top: auto; }
+    }
+
+    @media (max-width: 720px) {
+      .shell { width: min(calc(100% - 28px), var(--content)); }
+      .section { padding: 4.5rem 0; }
+      .site-header { position: absolute; }
+      .nav { min-height: 70px; }
+      .nav-toggle { display: grid; place-items: center; }
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 14px;
+        right: 14px;
+        display: none;
+        padding: 1rem;
+        background: rgba(10,34,42,.97);
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 14px;
+        box-shadow: var(--shadow-small);
+      }
+      .nav-links.is-open { display: grid; }
+      .nav-links a { display: block; padding: .65rem; }
+      .hero { min-height: 690px; }
+      .hero-grid { padding-top: 7rem; }
+      .hero h1 { font-size: clamp(3.2rem, 17vw, 5.4rem); }
+      .hero-lede { font-size: .96rem; }
+      .route-ribbon { margin-top: -38px; min-height: 92px; }
+      .route-node { padding: .9rem; }
+      .fact { min-height: 125px; padding: 1rem; }
+      .fact strong { font-size: 1.75rem; }
+      .map-frame { min-height: 440px; }
+      .map-note { max-width: 170px; }
+      .timeline::before { left: 22px; }
+      .day-row { grid-template-columns: 45px 1fr; gap: .7rem; }
+      .day-index strong { width: 44px; height: 44px; margin-left: 0; border-width: 5px; font-size: .9rem; }
+      .day-index time { display: none; }
+      details.day-card summary, .day-body { padding-left: 1rem; padding-right: 1rem; }
+      .schedule li { grid-template-columns: 72px 1fr; gap: .5rem; }
+      .food-grid { grid-template-columns: 1fr; }
+      .food-card { min-height: 0; }
+      .footer .shell { display: block; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      body::before, .site-header, .hero-contours, .route-stamp, .button-row, .day-actions, .back-top, .map-note { display: none !important; }
+      .hero { min-height: 0; padding: 2rem 0 5rem; color: var(--ink); background: #fff; }
+      .hero-grid { display: block; padding: 0; }
+      .hero h1 { color: var(--ocean); font-size: 4rem; }
+      .hero h1 span, .hero-lede { color: var(--rock); }
+      .route-ribbon { margin-top: -3rem; border: 1px solid var(--line); box-shadow: none; }
+      .section { padding: 2.2rem 0; break-inside: avoid; }
+      details.day-card:not([open]) > *:not(summary) { display: block; }
+      .map-frame { min-height: 380px; box-shadow: none; border: 1px solid var(--line); }
+      .food-card, details.day-card { break-inside: avoid; box-shadow: none; }
+      .sources { color: var(--ink); background: #fff; border-top: 1px solid var(--line); }
+      .sources h2 { color: var(--ink); }
+      .source-links a { color: var(--forest); }
+      .footer { color: var(--rock); background: #fff; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="主要导航">
+      <a class="brand" href="#top" aria-label="返回行程首页">
+        <span class="brand-mark" aria-hidden="true">游</span>
+        <span>山海路书</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="打开导航菜单">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#overview">路线概览</a></li>
+        <li><a href="#map-section">路线地图</a></li>
+        <li><a href="#itinerary">五日行程</a></li>
+        <li><a href="#food">推荐美食</a></li>
+        <li><a href="#tips">避峰锦囊</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <svg class="hero-contours" viewBox="0 0 1440 800" preserveAspectRatio="none" aria-hidden="true">
+        <g fill="none" stroke="#c7e4dc" stroke-width="1">
+          <path d="M-80 650C190 510 230 730 500 590S920 420 1120 530s330 70 460-50"/>
+          <path d="M-100 690C170 550 270 765 520 630S910 470 1130 565s340 82 480-38"/>
+          <path d="M-130 735C150 600 285 800 535 680S930 520 1150 610s330 100 500-10"/>
+          <path d="M860 -60c100 105 20 185 105 260s190 20 215 125-90 165-15 255 200 50 215 180"/>
+          <path d="M910 -70c100 105 18 190 105 265s188 20 215 125-90 170-15 260 205 47 220 180"/>
+          <path d="M960 -80c100 105 17 195 106 270s185 18 215 125-90 175-15 265 210 45 225 180"/>
+        </g>
+        <path d="M120 610 C330 520, 400 565, 565 440 S850 300, 1090 370 S1230 520, 1370 475" fill="none" stroke="#f07855" stroke-width="3" stroke-dasharray="7 10"/>
+        <circle cx="120" cy="610" r="7" fill="#f07855"/><circle cx="565" cy="440" r="7" fill="#f07855"/><circle cx="1090" cy="370" r="7" fill="#f07855"/>
+      </svg>
+      <div class="hero-grid shell">
+        <div>
+          <p class="eyebrow hero-kicker">Fujian family road book · 2026</p>
+          <h1 id="hero-title">沿山入海<span>向宁德去</span></h1>
+          <p class="hero-lede">从厦门清晨启程，经永泰的高山草甸抵达霞浦潮汐海岸，再循海回到宁德。五天四晚，不追日出、不赶景点，把国庆自驾的节奏留给一家人的山风、落日与热汤。</p>
+        </div>
+        <aside class="route-stamp" aria-label="行程摘要">
+          <p class="route-stamp-label">NATIONAL DAY · FAMILY</p>
+          <div class="route-stamp-core"><div><strong>5</strong><small>DAYS · 4 NIGHTS</small></div></div>
+          <p>2026.10.02—10.06<br>轻量山林 · 海岸慢游 · 错峰返程</p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="route-ribbon shell" aria-label="主要路线">
+      <div class="route-node"><span class="node-no">01</span><div><strong>厦门</strong><small>清晨出发</small></div></div>
+      <div class="route-node"><span class="node-no">02</span><div><strong>永泰</strong><small>山林 · 1晚</small></div></div>
+      <div class="route-node"><span class="node-no">03</span><div><strong>霞浦</strong><small>海岸 · 2晚</small></div></div>
+      <div class="route-node"><span class="node-no">04</span><div><strong>宁德</strong><small>美食 · 1晚</small></div></div>
+      <div class="route-node"><span class="node-no">05</span><div><strong>厦门</strong><small>早返到家</small></div></div>
+    </div>
+
+    <section class="section" id="overview" aria-labelledby="overview-title">
+      <div class="shell overview-grid">
+        <div class="trip-thesis">
+          <p class="eyebrow">01 / Route brief</p>
+          <blockquote id="overview-title">这不是一条“全部打卡”的路线，而是一条<em>用永泰换山景、用霞浦留海风</em>的亲子慢行线。</blockquote>
+          <p>加入永泰后，与“直达霞浦—宁德”相比，无拥堵驾驶基线仅增加约30公里、33分钟。代价可控，但必须删除太姥山和屏南，避免在五天内叠加第二个山地重项目。</p>
+          <div class="button-row">
+            <button class="btn btn--primary" type="button" id="focus-route">查看完整路线 <span aria-hidden="true">↗</span></button>
+            <a class="btn btn--secondary" href="#itinerary">展开五日安排 <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div class="fact-grid" aria-label="行程关键数字">
+          <div class="fact"><span>无拥堵路线基线</span><strong>≈ 834 km</strong><small>国庆实际里程与耗时以导航为准</small></div>
+          <div class="fact"><span>住宿分配</span><strong>1 + 2 + 1</strong><small>永泰1晚 · 霞浦2晚 · 宁德1晚</small></div>
+          <div class="fact"><span>每日步行强度</span><strong>1—2 h</strong><small>适合7—12岁轻松亲子游</small></div>
+          <div class="fact"><span>核心避峰动作</span><strong>早出早返</strong><small>10月2日早出 · 10月6日早返</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="map-section" aria-labelledby="map-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">02 / Route map</p>
+          <h2 id="map-title">先入山，再循海而行</h2>
+          <p>优先加载高德地图并按真实驾车道路绘制四段路线；高德服务不可用时自动切换为内置矢量示意图。点击地图标记或每日行程中的“地图定位”查看站点。</p>
+        </div>
+        <div class="map-layout">
+          <div class="map-frame">
+            <div id="trip-map" role="region" aria-label="厦门、永泰、霞浦、宁德自驾路线交互地图"></div>
+            <div class="map-note" id="map-note"><span class="map-loading">正在加载高德地图</span><br><strong>精确道路请以出发当天导航为准</strong></div>
+            <div class="map-status" id="map-status" role="status">地图资源未能载入。下方文字路线和完整行程仍可正常使用；联网后刷新页面可重试。</div>
+            <noscript><p class="map-status" style="display:block">浏览器未启用 JavaScript，交互地图不可用。请参考右侧文字路线。</p></noscript>
+          </div>
+          <aside class="map-sidebar" aria-label="地图路线说明">
+            <p class="eyebrow" style="color:#9ed0c3">Driving ledger</p>
+            <h3>四段驾驶，两个长途日</h3>
+            <p>里程与时间均为无拥堵估算，不含休息、排队和景区山路。</p>
+            <ol class="route-ledger">
+              <li><strong>厦门 → 永泰</strong><small>约222 km · 2h38m</small></li>
+              <li><strong>永泰 → 霞浦</strong><small>约210 km · 2h33m</small></li>
+              <li><strong>霞浦 → 宁德</strong><small>约63 km · 53m</small></li>
+              <li><strong>宁德 → 厦门</strong><small>约340 km · 3h57m</small></li>
+            </ol>
+            <div class="legend" aria-label="路线颜色图例">
+              <div class="legend-row"><span class="legend-line" style="background:#2d6a55"></span>Day 1 · 内陆入山</div>
+              <div class="legend-row"><span class="legend-line" style="background:#f07855"></span>Day 2 · 山海转场</div>
+              <div class="legend-row"><span class="legend-line" style="background:#4e91a6"></span>Day 4 · 沿海南下</div>
+              <div class="legend-row"><span class="legend-line" style="background:#9ed0c3"></span>Day 5 · 早返厦门</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="itinerary" aria-labelledby="itinerary-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">03 / Five-day rhythm</p>
+          <h2 id="itinerary-title">每天只留一个主角</h2>
+          <p>长途日不塞重景点，霞浦不追日出，返程日不安排上午游览。点击日期卡片可展开或收起详情。</p>
+        </div>
+        <div class="timeline">
+          <article class="day-row">
+            <div class="day-index"><strong>D1</strong><time datetime="2026-10-02">10.02</time></div>
+            <details class="day-card" open>
+              <summary>
+                <div class="summary-line"><h3>厦门 <span>→</span> 永泰</h3><span class="expand-mark" aria-hidden="true">＋</span></div>
+                <div class="day-meta"><span class="chip">驾驶日</span><span class="chip">约222 km</span><span class="chip chip--warm">05:30—06:00出发</span><span class="chip">宿永泰</span></div>
+              </summary>
+              <div class="day-body">
+                <ol class="schedule">
+                  <li><time>05:30</time><div><strong>从厦门上路</strong><p>出发前同时比较沙厦—甬莞与沈海方向路况；内陆方向无事故、强降雨或管制再按计划行驶。</p></div></li>
+                  <li><time>08:00</time><div><strong>服务区短休</strong><p>约每2小时停车活动，儿童补水、进食，不用“赶到酒店”压缩休息。</p></div></li>
+                  <li><time>10:00±</time><div><strong>抵达永泰，先休息</strong><p>实际到达可能因国庆车流延后。寄存行李后吃早午餐，下午只安排县城散步或酒店活动。</p></div></li>
+                  <li><time>18:00</time><div><strong>永泰晚餐</strong><p>用葱饼、蛋燕等热食开启旅程，早睡为次日山林短线留体力。</p></div></li>
+                </ol>
+                <div class="day-actions">
+                  <button class="btn btn--small btn--primary map-focus" type="button" data-stop="yongtai" aria-label="在地图上定位永泰">地图定位</button>
+                  <a class="btn btn--small btn--secondary" href="https://api.map.baidu.com/direction?origin=厦门&amp;destination=永泰&amp;mode=driving&amp;region=福建&amp;output=html&amp;src=webapp.roadbook" target="_blank" rel="noopener noreferrer">打开路线搜索</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="day-row">
+            <div class="day-index"><strong>D2</strong><time datetime="2026-10-03">10.03</time></div>
+            <details class="day-card" open>
+              <summary>
+                <div class="summary-line"><h3>永泰山林 <span>→</span> 霞浦</h3><span class="expand-mark" aria-hidden="true">＋</span></div>
+                <div class="day-meta"><span class="chip">轻量山林</span><span class="chip">草甸 / 天池短线</span><span class="chip chip--warm">不追当日晚霞</span><span class="chip">宿霞浦</span></div>
+              </summary>
+              <div class="day-body">
+                <ol class="schedule">
+                  <li><time>07:30</time><div><strong>早餐与天气复核</strong><p>确认云顶开放、景交、进山道路和步道状态；雨雾、强风或运营不明时直接降级。</p></div></li>
+                  <li><time>09:00</time><div><strong>云顶草甸 / 天池短线</strong><p>控制在约2小时，不走完整峡谷、连续悬空栈道和飞索。孩子恐高或疲劳就提前返回。</p></div></li>
+                  <li><time>12:30</time><div><strong>午餐后前往霞浦</strong><p>县城间无拥堵基线约2小时33分，另需计入景区山路与休息时间。</p></div></li>
+                  <li><time>16:00—17:30</time><div><strong>入住霞浦</strong><p>当天不设必须到达的摄影点；若到得早，只在酒店附近散步。</p></div></li>
+                </ol>
+                <div class="note-box"><strong>雨天备选：</strong>云顶条件不佳时，可改永泰欧乐堡海洋世界半日，或直接前往霞浦增加休息时间。欧乐堡亲子友好，但不属于山林体验。</div>
+                <div class="day-actions">
+                  <button class="btn btn--small btn--primary map-focus" type="button" data-stop="xiapu" aria-label="在地图上定位霞浦">地图定位</button>
+                  <a class="btn btn--small btn--secondary" href="https://api.map.baidu.com/direction?origin=永泰&amp;destination=霞浦&amp;mode=driving&amp;region=福建&amp;output=html&amp;src=webapp.roadbook" target="_blank" rel="noopener noreferrer">打开路线搜索</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="day-row">
+            <div class="day-index"><strong>D3</strong><time datetime="2026-10-04">10.04</time></div>
+            <details class="day-card" open>
+              <summary>
+                <div class="summary-line"><h3>霞浦海岸慢游</h3><span class="expand-mark" aria-hidden="true">＋</span></div>
+                <div class="day-meta"><span class="chip">不换酒店</span><span class="chip">三沙—东壁</span><span class="chip chip--warm">落日主场</span><span class="chip">宿霞浦</span></div>
+              </summary>
+              <div class="day-body">
+                <ol class="schedule">
+                  <li><time>08:30</time><div><strong>睡足再出发</strong><p>不追日出，错开摄影点清晨集中车流；早餐后再前往三沙方向。</p></div></li>
+                  <li><time>10:00</time><div><strong>三沙沿海轻逛</strong><p>只选一处步道或观景点，现场停车困难就果断跳过，不在村道长时间排队。</p></div></li>
+                  <li><time>12:30</time><div><strong>午餐与午休</strong><p>海鲜正餐安排在中午，点餐前问清时价、重量和做法。</p></div></li>
+                  <li><time>15:30</time><div><strong>东壁临海步道</strong><p>走1—2段即可，不必完成全线；在安全观景位置等落日，日落后尽早离开。</p></div></li>
+                </ol>
+                <div class="day-actions">
+                  <button class="btn btn--small btn--primary map-focus" type="button" data-stop="xiapu" aria-label="在地图上定位霞浦海岸">地图定位</button>
+                  <a class="btn btn--small btn--secondary" href="https://api.map.baidu.com/direction?origin=霞浦县&amp;destination=霞浦东壁村&amp;mode=driving&amp;region=宁德&amp;output=html&amp;src=webapp.roadbook" target="_blank" rel="noopener noreferrer">搜索东壁路线</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="day-row">
+            <div class="day-index"><strong>D4</strong><time datetime="2026-10-05">10.05</time></div>
+            <details class="day-card" open>
+              <summary>
+                <div class="summary-line"><h3>霞浦 <span>→</span> 宁德</h3><span class="expand-mark" aria-hidden="true">＋</span></div>
+                <div class="day-meta"><span class="chip">轻转场</span><span class="chip">约63 km</span><span class="chip">城市散步</span><span class="chip">宿宁德</span></div>
+              </summary>
+              <div class="day-body">
+                <ol class="schedule">
+                  <li><time>09:00</time><div><strong>慢早餐与自由时间</strong><p>根据潮汐和天气决定是否在县城周边短停，不专程追逐滩涂摄影机位。</p></div></li>
+                  <li><time>11:30</time><div><strong>霞浦午餐</strong><p>吃完再转场，避免孩子饿着坐车。</p></div></li>
+                  <li><time>14:00</time><div><strong>前往宁德蕉城</strong><p>无拥堵基线约53分钟，抵达后入住并完成车辆补能、轮胎和雨刮检查。</p></div></li>
+                  <li><time>17:00</time><div><strong>东湖周边散步与晚餐</strong><p>以城市慢行和宁德本地菜收尾，不再增加屏南或太姥山。</p></div></li>
+                </ol>
+                <div class="day-actions">
+                  <button class="btn btn--small btn--primary map-focus" type="button" data-stop="ningde" aria-label="在地图上定位宁德">地图定位</button>
+                  <a class="btn btn--small btn--secondary" href="https://api.map.baidu.com/direction?origin=霞浦&amp;destination=宁德蕉城&amp;mode=driving&amp;region=宁德&amp;output=html&amp;src=webapp.roadbook" target="_blank" rel="noopener noreferrer">打开路线搜索</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="day-row">
+            <div class="day-index"><strong>D5</strong><time datetime="2026-10-06">10.06</time></div>
+            <details class="day-card" open>
+              <summary>
+                <div class="summary-line"><h3>宁德 <span>→</span> 厦门</h3><span class="expand-mark" aria-hidden="true">＋</span></div>
+                <div class="day-meta"><span class="chip">返程日</span><span class="chip">约340 km</span><span class="chip chip--warm">06:30—07:30离开</span><span class="chip">不排景点</span></div>
+              </summary>
+              <div class="day-body">
+                <ol class="schedule">
+                  <li><time>06:30</time><div><strong>早餐打包，直接返程</strong><p>最迟不建议晚于08:00；目标是在下午集中返程前通过福州—泉州城市带。</p></div></li>
+                  <li><time>08:30</time><div><strong>第一次服务区休息</strong><p>查看前方事故和拥堵，只有导航明确节省时间时才改走国省道。</p></div></li>
+                  <li><time>10:30</time><div><strong>第二次休息</strong><p>驾驶员困倦立即加停，不为赶时间压缩安全间隔。</p></div></li>
+                  <li><time>12:00—14:00</time><div><strong>预计回到厦门</strong><p>国庆实际到达时间可能变化，全天不安排返厦后的固定活动。</p></div></li>
+                </ol>
+                <div class="day-actions">
+                  <button class="btn btn--small btn--primary map-focus" type="button" data-stop="xiamen" aria-label="在地图上定位厦门">地图定位</button>
+                  <a class="btn btn--small btn--secondary" href="https://api.map.baidu.com/direction?origin=宁德&amp;destination=厦门&amp;mode=driving&amp;region=福建&amp;output=html&amp;src=webapp.roadbook" target="_blank" rel="noopener noreferrer">打开返程路线</a>
+                </div>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="food" aria-labelledby="food-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">04 / Local table</p>
+          <h2 id="food-title">沿途推荐美食</h2>
+          <p>每天只安排一顿目的地特色正餐，其余保持清淡、快速。给孩子留熟悉口味，也给旅途留一点余地。</p>
+        </div>
+        <div class="food-grid">
+          <article class="food-card" data-index="01">
+            <span class="food-location">XIAMEN · 出发补给</span>
+            <h3>厦门</h3>
+            <ul class="dish-list"><li>沙茶面｜可选不辣汤底</li><li>花生汤｜清晨热食</li><li>烧肉粽｜便于出发前补充</li></ul>
+            <p class="food-tip">首日早出可提前打包，避免空腹上高速；汤水和热食不要放在车内久存。</p>
+          </article>
+          <article class="food-card" data-index="02">
+            <span class="food-location">YONGTAI · 山里热食</span>
+            <h3>永泰</h3>
+            <ul class="dish-list"><li>永泰葱饼｜酥香便携</li><li>蛋燕｜温热、孩子接受度高</li><li>永泰李干｜少量尝鲜</li></ul>
+            <p class="food-tip">进山前以热食和易消化主食为主，李干偏酸甜，不建议空腹大量食用。</p>
+          </article>
+          <article class="food-card" data-index="03">
+            <span class="food-location">XIAPU · 潮汐鲜味</span>
+            <h3>霞浦</h3>
+            <ul class="dish-list"><li>紫菜煲｜霞浦海味代表</li><li>剑蛏 / 海蛎｜当季询价</li><li>鱼丸与三沙小吃｜亲子友好</li></ul>
+            <p class="food-tip">海鲜点单先问时价、重量和做法；儿童过敏或肠胃敏感时优先熟食，少吃生冷。</p>
+          </article>
+          <article class="food-card" data-index="04">
+            <span class="food-location">NINGDE · 收尾一餐</span>
+            <h3>宁德</h3>
+            <ul class="dish-list"><li>清蒸大黄鱼｜选清淡做法</li><li>蕉城肉丸｜热汤搭配</li><li>鱼丸 / 光饼｜返程前补给</li></ul>
+            <p class="food-tip">返程前一晚不集中尝试生腌和过辣菜品；确认大黄鱼计价方式后再下单。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tips" aria-labelledby="tips-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">05 / Before the road</p>
+          <h2 id="tips-title">避峰不是赌一条小路</h2>
+          <p>真正有效的是早出、减少转场、实时复核和保留降级方案，而不是在拥堵时盲目改走山区国省道。</p>
+        </div>
+        <div class="tips-layout">
+          <aside class="peak-card">
+            <p class="eyebrow" style="color:#9ed0c3">Two anchor times</p>
+            <h3>记住两个时间</h3>
+            <div class="peak-times">
+              <div class="peak-time"><span>10月2日 · 厦门出发</span><strong>05:30—06:00</strong></div>
+              <div class="peak-time"><span>10月6日 · 宁德返程</span><strong>06:30—07:30</strong></div>
+            </div>
+            <small>这是结合历史官方规律制定的保守策略，不是2026年逐路段官方预测。出发前必须查看实时导航与官方路况。</small>
+          </aside>
+          <div class="checklist">
+            <article class="check-item"><span class="check-icon">路</span><div><h3>9月30日至10月1日复核</h3><p>确认福建官方国庆路况提示、云顶开放与景交、霞浦东壁临时交通组织，以及山区降雨和海边大风预报。</p></div></article>
+            <article class="check-item"><span class="check-icon">雨</span><div><h3>山区天气决定行程级别</h3><p>永泰出现持续降雨、浓雾、道路管制或步道状态不明时，取消山林线，改欧乐堡或直接前往霞浦。</p></div></article>
+            <article class="check-item"><span class="check-icon">童</span><div><h3>儿童安全优先于到达时间</h3><p>按孩子身高体重和产品说明正确使用儿童安全座椅或增高垫；每约2小时休息，全员全程系安全带。</p></div></article>
+            <article class="check-item"><span class="check-icon">备</span><div><h3>车内准备四类物品</h3><p>防滑鞋和替换衣袜、薄外套与雨具、晕车及常用药、饮水和少量不易变质的食物。</p></div></article>
+            <article class="check-item"><span class="check-icon">删</span><div><h3>拥堵时先删景点，不删休息</h3><p>东壁村道排队就缩短海岸点位；云顶排队或孩子疲劳就取消。太姥山、屏南不再加入本路线。</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <div class="shell sources-grid">
+        <div>
+          <p class="eyebrow" style="color:#9ed0c3">Sources & notes</p>
+          <h2 id="sources-title">临行以官方信息为准</h2>
+          <p>页面路线和耗时用于规划，不代替实时导航、景区公告或现场管理。</p>
+        </div>
+        <div class="source-links">
+          <a href="https://www.gov.cn/zhengce/zhengceku/202511/content_7047091.htm" target="_blank" rel="noopener noreferrer">国务院办公厅：2026年节假日安排</a>
+          <a href="https://jtyst.fujian.gov.cn/zwgk/jtyw/jtyw/202609/t20260922_7216867.htm" target="_blank" rel="noopener noreferrer">福建省交通运输厅：2026中秋国庆安全保障部署</a>
+          <a href="https://www.yongtai.gov.cn/xjwz/zjyt/fjms/202506/t20250606_5029893.htm" target="_blank" rel="noopener noreferrer">永泰县政府：云顶景区介绍</a>
+          <a href="https://www.xiapu.gov.cn/ndxpcxcj/ywtj/jtxp/ssz/202308/t20230803_1784270.htm" target="_blank" rel="noopener noreferrer">霞浦县政府：东壁村介绍</a>
+          <a href="docs/travel/2026-ningde-road-trip-research.md" target="_blank" rel="noopener noreferrer">查看本路线完整研究笔记</a>
+          <a href="https://lbs.amap.com/api/javascript-api-v2/guide/services/navigation" target="_blank" rel="noopener noreferrer">高德开放平台：JS API 2.0 驾车路线规划</a>
+          <p>交互地图优先使用高德 JS API 2.0；加载或鉴权失败时自动切换为页面内置矢量示意图。外部资料均作摘要改写。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell"><span>山海路书 · 厦门—永泰—霞浦—宁德</span><span>规划更新：2026-09-28 · <span id="footer-year">2026</span></span></div>
+  </footer>
+
+  <button class="back-top" type="button" aria-label="返回页面顶部" title="返回顶部">↑</button>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const tripStops = [
+        { id: 'xiamen', name: '厦门', coords: [24.4798, 118.0894], day: 'Day 1 / Day 5', summary: '清晨出发，返程终点' },
+        { id: 'yongtai', name: '永泰', coords: [25.8660, 118.9327], day: 'Day 1—2', summary: '云顶草甸 / 天池轻量短线' },
+        { id: 'xiapu', name: '霞浦', coords: [26.8850, 120.0050], day: 'Day 2—4', summary: '三沙—东壁海岸慢游' },
+        { id: 'ningde', name: '宁德', coords: [26.6650, 119.5470], day: 'Day 4—5', summary: '蕉城休整，美食收尾' }
+      ];
+
+      const routeSegments = [
+        {
+          from: 'xiamen', to: 'yongtai', color: '#2d6a55', label: 'Day 1 · 内陆入山',
+          via: [[24.73, 118.23], [25.02, 118.42], [25.31, 118.62], [25.58, 118.78]]
+        },
+        {
+          from: 'yongtai', to: 'xiapu', color: '#f07855', label: 'Day 2 · 山海转场',
+          via: [[25.98, 119.15], [26.10, 119.36], [26.35, 119.55], [26.60, 119.72], [26.79, 119.88]]
+        },
+        {
+          from: 'xiapu', to: 'ningde', color: '#4e91a6', label: 'Day 4 · 沿海南下',
+          via: [[26.80, 119.89], [26.72, 119.72]]
+        },
+        {
+          from: 'ningde', to: 'xiamen', color: '#9ed0c3', label: 'Day 5 · 早返厦门',
+          via: [[26.25, 119.40], [25.98, 119.31], [25.57, 119.11], [25.24, 118.89], [24.88, 118.66], [24.65, 118.31]]
+        }
+      ];
+
+      // Local test configuration. Before publishing, move securityJsCode behind an AMap serviceHost proxy.
+      const AMAP_CONFIG = Object.freeze({
+        key: '83d94178c2acee4a757e72f71a4d6480',
+        securityJsCode: '0f6b1e9bd54e52767fdf3cd95cb1ce3d'
+      });
+
+      let map = null;
+      let mapEngine = 'none';
+      let mapReadyPromise = null;
+      let routeGroup = null;
+      let amapInfoWindow = null;
+      const amapOverlays = [];
+      const markers = new Map();
+      const stopById = new Map(tripStops.map(stop => [stop.id, stop]));
+      const mapStatus = document.getElementById('map-status');
+      const mapNote = document.getElementById('map-note');
+
+      function loadLeafletAssets() {
+        if (window.L) return Promise.resolve(window.L);
+        return new Promise((resolve, reject) => {
+          let styleReady = false;
+          let scriptReady = false;
+          let settled = false;
+          const timeout = window.setTimeout(() => finish(new Error('Leaflet asset load timeout')), 10000);
+
+          const finish = error => {
+            if (settled) return;
+            if (error) {
+              settled = true;
+              window.clearTimeout(timeout);
+              reject(error);
+              return;
+            }
+            if (styleReady && scriptReady && window.L) {
+              settled = true;
+              window.clearTimeout(timeout);
+              resolve(window.L);
+            }
+          };
+
+          const style = document.createElement('link');
+          style.rel = 'stylesheet';
+          style.href = 'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css';
+          style.integrity = 'sha256-p4NxAoJBhIINfQ3ynHH3k8w0Y5JpRGLCl8+EMcGbA2M=';
+          style.crossOrigin = 'anonymous';
+          style.onload = () => { styleReady = true; finish(); };
+          style.onerror = () => finish(new Error('Leaflet CSS load error'));
+
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js';
+          script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+          script.crossOrigin = 'anonymous';
+          script.async = true;
+          script.onload = () => { scriptReady = true; finish(); };
+          script.onerror = () => finish(new Error('Leaflet JS load error'));
+
+          document.head.append(style, script);
+        });
+      }
+
+      function markerIcon(index) {
+        return L.divIcon({
+          className: 'custom-marker',
+          html: `<span>${String(index + 1).padStart(2, '0')}</span>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 30],
+          popupAnchor: [0, -28]
+        });
+      }
+
+      function contextLabel(text, tone = 'land') {
+        return L.divIcon({
+          className: `map-context-label map-context-label--${tone}`,
+          html: `<span>${text}</span>`,
+          iconSize: [0, 0],
+          iconAnchor: [0, 0]
+        });
+      }
+
+      function addOfflineBasemap(targetMap) {
+        const contextLayer = L.featureGroup().addTo(targetMap);
+        const coastline = [
+          [27.12, 120.18], [26.94, 120.04], [26.79, 119.92], [26.64, 119.79],
+          [26.45, 119.75], [26.25, 119.64], [26.05, 119.46], [25.82, 119.36],
+          [25.58, 119.16], [25.35, 119.02], [25.10, 118.91], [24.89, 118.70],
+          [24.68, 118.35], [24.48, 118.12], [24.18, 117.98], [23.95, 117.91]
+        ];
+
+        L.polygon(
+          [...coastline, [23.90, 120.52], [27.20, 120.52]],
+          { stroke: false, fillColor: '#d9eaed', fillOpacity: .88, interactive: false }
+        ).addTo(contextLayer);
+        L.polyline(coastline, {
+          color: '#6f9991', weight: 2, opacity: .75, dashArray: '3 5', interactive: false
+        }).addTo(contextLayer);
+
+        [24.5, 25, 25.5, 26, 26.5, 27].forEach(lat => {
+          L.polyline([[lat, 117.72], [lat, 120.42]], {
+            color: '#55726f', weight: 1, opacity: .12, dashArray: '2 8', interactive: false
+          }).addTo(contextLayer);
+        });
+        [118, 118.5, 119, 119.5, 120].forEach(lng => {
+          L.polyline([[23.95, lng], [27.15, lng]], {
+            color: '#55726f', weight: 1, opacity: .12, dashArray: '2 8', interactive: false
+          }).addTo(contextLayer);
+        });
+
+        [18000, 32000, 47000].forEach(radius => {
+          L.circle(stopById.get('yongtai').coords, {
+            radius, color: '#2d6a55', weight: 1, opacity: .2,
+            fill: false, dashArray: '3 7', interactive: false
+          }).addTo(contextLayer);
+        });
+
+        [
+          { name: '泉州', coords: [24.88, 118.67] },
+          { name: '莆田', coords: [25.44, 119.02] },
+          { name: '福州', coords: [26.08, 119.30] },
+          { name: '福建东部', coords: [25.30, 118.08] },
+          { name: '东 海', coords: [25.75, 120.13], tone: 'sea' }
+        ].forEach(place => {
+          L.marker(place.coords, {
+            icon: contextLabel(place.name, place.tone || 'land'),
+            interactive: false,
+            keyboard: false
+          }).addTo(contextLayer);
+        });
+
+        const key = L.control({ position: 'bottomleft' });
+        key.onAdd = () => {
+          const element = L.DomUtil.create('div', 'offline-map-key');
+          element.textContent = 'N ↑ · 内置矢量示意底图';
+          return element;
+        };
+        key.addTo(targetMap);
+        return contextLayer;
+      }
+
+      async function initializeLeafletFallback(reason = '高德地图暂时不可用') {
+        mapEngine = 'loading-fallback';
+        markers.clear();
+        routeGroup = null;
+        const container = document.getElementById('trip-map');
+        container.innerHTML = '';
+        container.className = '';
+        container.removeAttribute('style');
+        mapStatus.textContent = `${reason}，正在加载内置矢量路线图…`;
+        mapStatus.style.display = 'block';
+        mapNote.innerHTML = '正在切换备用地图<br><strong>精确道路请以出发当天导航为准</strong>';
+
+        try {
+          await loadLeafletAssets();
+          mapEngine = 'leaflet';
+          map = L.map('trip-map', {
+            scrollWheelZoom: false,
+            zoomControl: true,
+            attributionControl: false,
+            minZoom: 6,
+            maxZoom: 10,
+            maxBounds: [[23.60, 117.15], [27.55, 120.90]],
+            maxBoundsViscosity: .75
+          });
+          addOfflineBasemap(map);
+
+          routeGroup = L.featureGroup().addTo(map);
+
+          tripStops.forEach((stop, index) => {
+            const marker = L.marker(stop.coords, { icon: markerIcon(index), title: stop.name })
+              .bindTooltip(stop.name, { permanent: true, direction: 'right', offset: [14, -13], className: 'stop-name-label' })
+              .bindPopup(`<span class="popup-day">${stop.day}</span><br><strong>${stop.name}</strong><br>${stop.summary}`)
+              .addTo(routeGroup);
+            markers.set(stop.id, marker);
+          });
+
+          routeSegments.forEach(segment => {
+            const from = stopById.get(segment.from);
+            const to = stopById.get(segment.to);
+            L.polyline([from.coords, ...(segment.via || []), to.coords], {
+              color: segment.color,
+              weight: 5,
+              opacity: .86,
+              dashArray: segment.to === 'xiamen' ? '9 11' : null,
+              lineCap: 'round'
+            }).bindTooltip(segment.label, { sticky: true }).addTo(routeGroup);
+          });
+
+          mapStatus.textContent = `${reason}，已切换为内置矢量路线图。`;
+          mapNote.innerHTML = '内置矢量示意图<br><strong>精确道路请以出发当天导航为准</strong>';
+          focusRoute(false);
+          setTimeout(() => map.invalidateSize(), 80);
+        } catch (error) {
+          console.warn('Fallback map initialization failed:', error);
+          try {
+            if (map && typeof map.remove === 'function') map.remove();
+          } catch (cleanupError) {
+            console.warn('Fallback map cleanup failed:', cleanupError);
+          }
+          map = null;
+          routeGroup = null;
+          markers.clear();
+          mapEngine = 'none';
+          mapStatus.textContent = '高德与备用地图库均未能加载。请参考右侧文字路线和下方完整行程。';
+          mapStatus.style.display = 'block';
+          mapNote.innerHTML = '文字路线模式<br><strong>可使用下方按钮打开导航</strong>';
+        }
+      }
+
+      function transformLat(x, y) {
+        let value = -100 + 2 * x + 3 * y + .2 * y * y + .1 * x * y + .2 * Math.sqrt(Math.abs(x));
+        value += (20 * Math.sin(6 * x * Math.PI) + 20 * Math.sin(2 * x * Math.PI)) * 2 / 3;
+        value += (20 * Math.sin(y * Math.PI) + 40 * Math.sin(y / 3 * Math.PI)) * 2 / 3;
+        value += (160 * Math.sin(y / 12 * Math.PI) + 320 * Math.sin(y * Math.PI / 30)) * 2 / 3;
+        return value;
+      }
+
+      function transformLng(x, y) {
+        let value = 300 + x + 2 * y + .1 * x * x + .1 * x * y + .1 * Math.sqrt(Math.abs(x));
+        value += (20 * Math.sin(6 * x * Math.PI) + 20 * Math.sin(2 * x * Math.PI)) * 2 / 3;
+        value += (20 * Math.sin(x * Math.PI) + 40 * Math.sin(x / 3 * Math.PI)) * 2 / 3;
+        value += (150 * Math.sin(x / 12 * Math.PI) + 300 * Math.sin(x / 30 * Math.PI)) * 2 / 3;
+        return value;
+      }
+
+      function wgs84ToGcj02(coords) {
+        const [lat, lng] = coords;
+        if (lng < 72.004 || lng > 137.8347 || lat < .8293 || lat > 55.8271) return [lng, lat];
+        const earthRadius = 6378245;
+        const eccentricity = .006693421622965943;
+        let deltaLat = transformLat(lng - 105, lat - 35);
+        let deltaLng = transformLng(lng - 105, lat - 35);
+        const radLat = lat / 180 * Math.PI;
+        let magic = Math.sin(radLat);
+        magic = 1 - eccentricity * magic * magic;
+        const sqrtMagic = Math.sqrt(magic);
+        deltaLat = deltaLat * 180 / ((earthRadius * (1 - eccentricity)) / (magic * sqrtMagic) * Math.PI);
+        deltaLng = deltaLng * 180 / (earthRadius / sqrtMagic * Math.cos(radLat) * Math.PI);
+        return [lng + deltaLng, lat + deltaLat];
+      }
+
+      function loadAmapApi() {
+        if (window.AMap) return Promise.resolve(window.AMap);
+        window._AMapSecurityConfig = { securityJsCode: AMAP_CONFIG.securityJsCode };
+
+        return new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          const timeout = window.setTimeout(() => reject(new Error('AMap API load timeout')), 12000);
+          script.id = 'amap-js-api';
+          script.async = true;
+          script.src = `https://webapi.amap.com/maps?v=2.0&key=${encodeURIComponent(AMAP_CONFIG.key)}`;
+          script.onload = () => {
+            window.clearTimeout(timeout);
+            if (window.AMap) resolve(window.AMap);
+            else reject(new Error('AMap API unavailable after load'));
+          };
+          script.onerror = () => {
+            window.clearTimeout(timeout);
+            reject(new Error('AMap API network error'));
+          };
+          document.head.appendChild(script);
+        });
+      }
+
+      function amapInfoContent(stop) {
+        return `<div class="amap-info"><span class="popup-day">${stop.day}</span><br><strong>${stop.name}</strong><br>${stop.summary}</div>`;
+      }
+
+      function fitAmapRoute() {
+        if (mapEngine !== 'amap' || !map || !amapOverlays.length) return;
+        map.setFitView(amapOverlays, false, [68, 68, 68, 68], 8);
+      }
+
+      function drawAmapRoutes() {
+        const schematicLines = new Map();
+        let finished = 0;
+        let successful = 0;
+        let routeStatusClosed = false;
+
+        const updateRouteStatus = timedOut => {
+          if (routeStatusClosed) return;
+          if (successful === routeSegments.length) {
+            routeStatusClosed = true;
+            mapStatus.style.display = 'none';
+            mapNote.innerHTML = '高德驾车路线图 · 4/4段<br><strong>精确路况请以出发当天导航为准</strong>';
+            return;
+          }
+          if (timedOut || finished === routeSegments.length) {
+            routeStatusClosed = true;
+            mapStatus.textContent = `高德已规划 ${successful}/4 段真实道路，其余路段暂以彩色示意线显示。`;
+            mapStatus.style.display = 'block';
+            mapNote.innerHTML = `高德地图 · ${successful}/4段道路<br><strong>其余路段为行程示意线</strong>`;
+          }
+        };
+
+        routeSegments.forEach(segment => {
+          const from = stopById.get(segment.from);
+          const to = stopById.get(segment.to);
+          const path = [from.coords, ...(segment.via || []), to.coords].map(wgs84ToGcj02);
+          const line = new AMap.Polyline({
+            map,
+            path,
+            strokeColor: segment.color,
+            strokeWeight: 7,
+            strokeOpacity: .88,
+            strokeStyle: segment.to === 'xiamen' ? 'dashed' : 'solid',
+            lineJoin: 'round',
+            lineCap: 'round',
+            showDir: true,
+            zIndex: 60
+          });
+          schematicLines.set(segment, line);
+          amapOverlays.push(line);
+        });
+        fitAmapRoute();
+        mapNote.innerHTML = '高德地图 · 正在规划道路<br><strong>精确路况请以出发当天导航为准</strong>';
+
+        const routeTimeout = window.setTimeout(() => updateRouteStatus(true), 12000);
+        try {
+          AMap.plugin('AMap.Driving', () => {
+            routeSegments.forEach(segment => {
+              const from = stopById.get(segment.from);
+              const to = stopById.get(segment.to);
+              const driving = new AMap.Driving({ policy: 0, extensions: 'base' });
+              driving.search(wgs84ToGcj02(from.coords), wgs84ToGcj02(to.coords), (status, result) => {
+                finished += 1;
+                if (status === 'complete' && result.routes && result.routes[0]) {
+                  const roadPath = [];
+                  (result.routes[0].steps || []).forEach(step => {
+                    (step.path || []).forEach(point => roadPath.push(point));
+                  });
+                  if (roadPath.length > 1) {
+                    const oldLine = schematicLines.get(segment);
+                    if (oldLine) {
+                      map.remove(oldLine);
+                      const index = amapOverlays.indexOf(oldLine);
+                      if (index >= 0) amapOverlays.splice(index, 1);
+                    }
+                    const roadLine = new AMap.Polyline({
+                      map,
+                      path: roadPath,
+                      strokeColor: segment.color,
+                      strokeWeight: 7,
+                      strokeOpacity: .92,
+                      strokeStyle: segment.to === 'xiamen' ? 'dashed' : 'solid',
+                      lineJoin: 'round',
+                      lineCap: 'round',
+                      showDir: true,
+                      zIndex: 70
+                    });
+                    amapOverlays.push(roadLine);
+                    successful += 1;
+                  }
+                }
+                if (finished === routeSegments.length) {
+                  window.clearTimeout(routeTimeout);
+                  fitAmapRoute();
+                }
+                updateRouteStatus(false);
+              });
+            });
+          });
+        } catch (error) {
+          console.warn('AMap Driving plugin failed:', error);
+          window.clearTimeout(routeTimeout);
+          updateRouteStatus(true);
+        }
+      }
+
+      function drawAmapStops() {
+        markers.clear();
+        amapOverlays.length = 0;
+        amapInfoWindow = new AMap.InfoWindow({ offset: new AMap.Pixel(0, -24), closeWhenClickMap: true });
+
+        tripStops.forEach((stop, index) => {
+          const position = wgs84ToGcj02(stop.coords);
+          const marker = new AMap.Marker({
+            map,
+            position,
+            title: stop.name,
+            offset: new AMap.Pixel(-17, -17),
+            zIndex: 120,
+            content: `<div class="amap-stop-marker"><span>${String(index + 1).padStart(2, '0')}</span><b>${stop.name}</b></div>`
+          });
+          marker.on('click', () => {
+            amapInfoWindow.setContent(amapInfoContent(stop));
+            amapInfoWindow.open(map, position);
+          });
+          markers.set(stop.id, marker);
+          amapOverlays.push(marker);
+        });
+        drawAmapRoutes();
+      }
+
+      function initializeAmapMap() {
+        return new Promise((resolve, reject) => {
+          const container = document.getElementById('trip-map');
+          container.innerHTML = '';
+          container.className = '';
+          container.removeAttribute('style');
+          let settled = false;
+          const timeout = window.setTimeout(() => {
+            if (!settled) {
+              settled = true;
+              reject(new Error('AMap map authorization timeout'));
+            }
+          }, 12000);
+
+          try {
+            map = new AMap.Map('trip-map', {
+              viewMode: '2D',
+              zoom: 7,
+              center: [119.18, 25.74],
+              mapStyle: 'amap://styles/whitesmoke',
+              showLabel: true,
+              features: ['bg', 'road', 'building', 'point']
+            });
+            map.on('complete', () => {
+              if (settled) return;
+              try {
+                mapEngine = 'amap';
+                mapStatus.style.display = 'none';
+                mapNote.innerHTML = '高德地图 · 正在初始化路线<br><strong>精确路况请以出发当天导航为准</strong>';
+                drawAmapStops();
+                settled = true;
+                window.clearTimeout(timeout);
+                resolve();
+              } catch (error) {
+                settled = true;
+                window.clearTimeout(timeout);
+                reject(error);
+              }
+            });
+          } catch (error) {
+            settled = true;
+            window.clearTimeout(timeout);
+            reject(error);
+          }
+        });
+      }
+
+      async function initializeMap() {
+        mapEngine = 'loading-amap';
+        mapStatus.textContent = '正在加载高德地图和驾车路线…';
+        mapStatus.style.display = 'block';
+        try {
+          await loadAmapApi();
+          await initializeAmapMap();
+        } catch (error) {
+          console.warn('AMap initialization failed, using vector fallback:', error);
+          try {
+            if (map && typeof map.destroy === 'function') map.destroy();
+          } catch (cleanupError) {
+            console.warn('AMap cleanup failed:', cleanupError);
+          }
+          map = null;
+          amapInfoWindow = null;
+          amapOverlays.length = 0;
+          await initializeLeafletFallback('高德地图加载或鉴权失败');
+        }
+      }
+
+      function focusStop(stopId) {
+        const stop = stopById.get(stopId);
+        const mapSection = document.getElementById('map-section');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        mapSection.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+
+        const applyFocus = () => {
+          if (!map || !stop) {
+            mapStatus.style.display = 'block';
+            return;
+          }
+          const marker = markers.get(stopId);
+          if (mapEngine === 'amap' && marker) {
+            const position = marker.getPosition();
+            map.setZoomAndCenter(10, position, false, reduceMotion ? 0 : 350);
+            amapInfoWindow.setContent(amapInfoContent(stop));
+            amapInfoWindow.open(map, position);
+            return;
+          }
+          if (mapEngine === 'leaflet') {
+            map.invalidateSize();
+            map.setView(stop.coords, 9, { animate: !reduceMotion });
+            if (marker) marker.openPopup();
+          }
+        };
+
+        const scheduleFocus = () => window.setTimeout(applyFocus, 320);
+        if (mapEngine.startsWith('loading') && mapReadyPromise) mapReadyPromise.then(scheduleFocus);
+        else scheduleFocus();
+      }
+
+      function focusRoute(shouldScroll = true) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (shouldScroll) {
+          document.getElementById('map-section').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
+
+        const applyFocus = () => {
+          if (!map) {
+            if (shouldScroll) mapStatus.style.display = 'block';
+            return;
+          }
+          if (mapEngine === 'amap') {
+            fitAmapRoute();
+            return;
+          }
+          if (mapEngine === 'leaflet' && routeGroup) {
+            map.invalidateSize();
+            map.fitBounds(routeGroup.getBounds(), { padding: [45, 45], maxZoom: 8, animate: !reduceMotion });
+          }
+        };
+
+        const scheduleFocus = () => window.setTimeout(applyFocus, shouldScroll ? 320 : 0);
+        if (mapEngine.startsWith('loading') && mapReadyPromise) mapReadyPromise.then(scheduleFocus);
+        else scheduleFocus();
+      }
+
+      window.focusStop = focusStop;
+      window.focusRoute = focusRoute;
+
+      document.querySelectorAll('.map-focus').forEach(button => {
+        button.addEventListener('click', () => focusStop(button.dataset.stop));
+      });
+      document.getElementById('focus-route').addEventListener('click', () => focusRoute(true));
+
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.getElementById('nav-links');
+      navToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('is-open');
+        navToggle.setAttribute('aria-expanded', String(open));
+        navToggle.setAttribute('aria-label', open ? '关闭导航菜单' : '打开导航菜单');
+        navToggle.textContent = open ? '×' : '☰';
+      });
+      navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', '打开导航菜单');
+        navToggle.textContent = '☰';
+      }));
+
+      const backTop = document.querySelector('.back-top');
+      window.addEventListener('scroll', () => backTop.classList.toggle('is-visible', window.scrollY > 650), { passive: true });
+      backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+
+      document.getElementById('footer-year').textContent = String(new Date().getFullYear());
+      mapReadyPromise = initializeMap();
+    })();
+  </script>
+</body>
+</html>
