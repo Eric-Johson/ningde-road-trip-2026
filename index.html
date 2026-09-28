@@ -300,13 +300,32 @@
     .map-sidebar { display: flex; flex-direction: column; padding: 1.5rem; color: var(--white); background: var(--ocean); border-radius: var(--radius); }
     .map-sidebar h3 { margin: .2rem 0 .4rem; font-family: var(--display); font-size: 1.65rem; }
     .map-sidebar > p { margin: 0; color: rgba(255,255,255,.62); font-size: .82rem; }
-    .route-ledger { list-style: none; margin: 1.3rem 0; padding: 0; counter-reset: stop; }
+    .traffic-card { margin: 1rem 0 .4rem; padding: .9rem; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); border-radius: 13px; }
+    .traffic-head { display: flex; align-items: center; gap: .55rem; }
+    .traffic-dot { width: 9px; height: 9px; flex: 0 0 9px; background: #9aa7aa; border-radius: 50%; box-shadow: 0 0 0 4px rgba(154,167,170,.13); }
+    .traffic-dot.is-loading { background: #f5b942; animation: traffic-pulse 1.3s infinite; }
+    .traffic-dot.is-live { background: #2ac56f; box-shadow: 0 0 0 4px rgba(42,197,111,.14); }
+    .traffic-dot.is-stale { background: #f07855; box-shadow: 0 0 0 4px rgba(240,120,85,.14); }
+    .traffic-dot.is-unavailable { background: #9aa7aa; }
+    .traffic-head strong { font-size: .82rem; }
+    .traffic-time { display: block; margin: .3rem 0 .7rem 1.45rem; color: rgba(255,255,255,.68); font-size: .67rem; }
+    .traffic-legend { display: grid; grid-template-columns: repeat(2, 1fr); gap: .38rem .7rem; padding: .7rem 0; border-block: 1px solid rgba(255,255,255,.1); }
+    .traffic-key { display: flex; align-items: center; gap: .42rem; color: rgba(255,255,255,.72); font-size: .66rem; }
+    .traffic-swatch { width: 20px; height: 4px; flex: 0 0 20px; border-radius: 99px; }
+    .traffic-footer { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-top: .7rem; }
+    .traffic-footer small { color: rgba(255,255,255,.68); font-size: .66rem; }
+    .traffic-refresh { padding: .38rem .65rem; color: var(--white); background: transparent; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; cursor: pointer; font-size: .66rem; }
+    .traffic-refresh:hover:not(:disabled) { background: rgba(255,255,255,.1); }
+    .traffic-refresh:disabled { cursor: not-allowed; opacity: .42; }
+    @keyframes traffic-pulse { 50% { opacity: .45; transform: scale(.82); } }
+    .route-ledger { list-style: none; margin: 1.1rem 0; padding: 0; counter-reset: stop; }
     .route-ledger li { counter-increment: stop; position: relative; padding: .15rem 0 1.1rem 2.6rem; }
     .route-ledger li:not(:last-child)::before { content: ""; position: absolute; left: .82rem; top: 1.35rem; bottom: 0; width: 1px; background: rgba(255,255,255,.22); }
     .route-ledger li::after { content: counter(stop); position: absolute; left: 0; top: 0; width: 1.65rem; height: 1.65rem; display: grid; place-items: center; color: var(--ocean); background: var(--mist); border-radius: 50%; font: 800 .68rem var(--mono); }
     .route-ledger strong { display: block; font-size: .92rem; }
     .route-ledger small { color: rgba(255,255,255,.56); }
     .legend { margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.14); }
+    .route-legend-label { display: block; margin-bottom: .35rem; color: rgba(255,255,255,.68); font-size: .66rem; }
     .legend-row { display: flex; align-items: center; gap: .55rem; margin-top: .55rem; font-size: .74rem; color: rgba(255,255,255,.7); }
     .legend-line { width: 27px; height: 4px; border-radius: 9px; }
     .custom-marker { display: grid; place-items: center; width: 34px !important; height: 34px !important; margin-left: -17px !important; margin-top: -17px !important; color: var(--white); background: var(--ocean); border: 3px solid var(--white); border-radius: 50%; box-shadow: 0 5px 16px rgba(18,49,59,.32); font: 900 .75rem var(--mono); }
@@ -618,6 +637,18 @@
             <p class="eyebrow" style="color:#9ed0c3">Driving ledger</p>
             <h3>四段驾驶，两个长途日</h3>
             <p>里程与时间均为无拥堵估算，不含休息、排队和景区山路。</p>
+            <div class="traffic-card" id="traffic-card" aria-labelledby="traffic-title" aria-busy="true">
+              <div class="traffic-head"><span class="traffic-dot is-loading" id="traffic-dot" aria-hidden="true"></span><strong id="traffic-title">实时路况加载中</strong></div>
+              <span class="traffic-time" id="traffic-updated" aria-live="polite">页面打开即获取 · 每3分钟自动刷新</span>
+              <div class="traffic-legend" aria-label="高德实时路况颜色图例">
+                <span class="traffic-key"><i class="traffic-swatch" style="background:#22b35a"></i>畅通</span>
+                <span class="traffic-key"><i class="traffic-swatch" style="background:#f4c542"></i>缓行</span>
+                <span class="traffic-key"><i class="traffic-swatch" style="background:#ed4c4c"></i>拥堵</span>
+                <span class="traffic-key"><i class="traffic-swatch" style="background:#8d2335"></i>严重拥堵</span>
+                <span class="traffic-key"><i class="traffic-swatch" style="background:#9aa7aa"></i>路况未知</span>
+              </div>
+              <div class="traffic-footer"><small>放大查看 · 时间为图层接收完成时刻</small><button class="traffic-refresh" id="traffic-refresh" type="button" disabled>刷新路况</button></div>
+            </div>
             <ol class="route-ledger">
               <li><strong>厦门 → 永泰</strong><small>约222 km · 2h38m</small></li>
               <li><strong>永泰 → 霞浦</strong><small>约210 km · 2h33m</small></li>
@@ -625,6 +656,7 @@
               <li><strong>宁德 → 厦门</strong><small>约340 km · 3h57m</small></li>
             </ol>
             <div class="legend" aria-label="路线颜色图例">
+              <small class="route-legend-label">行程分段色 · 不代表道路拥堵</small>
               <div class="legend-row"><span class="legend-line" style="background:#2d6a55"></span>Day 1 · 内陆入山</div>
               <div class="legend-row"><span class="legend-line" style="background:#f07855"></span>Day 2 · 山海转场</div>
               <div class="legend-row"><span class="legend-line" style="background:#4e91a6"></span>Day 4 · 沿海南下</div>
@@ -857,6 +889,7 @@
           <a href="https://www.xiapu.gov.cn/ndxpcxcj/ywtj/jtxp/ssz/202308/t20230803_1784270.htm" target="_blank" rel="noopener noreferrer">霞浦县政府：东壁村介绍</a>
           <a href="docs/travel/2026-ningde-road-trip-research.md" target="_blank" rel="noopener noreferrer">查看本路线完整研究笔记</a>
           <a href="https://lbs.amap.com/api/javascript-api-v2/guide/services/navigation" target="_blank" rel="noopener noreferrer">高德开放平台：JS API 2.0 驾车路线规划</a>
+          <a href="https://lbs.amap.com/api/javascript-api-v2/guide/layers/official-layers" target="_blank" rel="noopener noreferrer">高德开放平台：实时交通图层</a>
           <p>交互地图优先使用高德 JS API 2.0；加载或鉴权失败时自动切换为页面内置矢量示意图。外部资料均作摘要改写。</p>
         </div>
       </div>
@@ -1025,11 +1058,22 @@
       let mapReadyPromise = null;
       let routeGroup = null;
       let amapInfoWindow = null;
+      let trafficLayer = null;
+      let trafficLoadTimer = null;
+      let trafficRefreshInFlight = false;
+      let trafficGeneration = 0;
+      let trafficLastLoadedAt = 0;
+      let trafficCompleteHandler = null;
       const amapOverlays = [];
       const markers = new Map();
       const stopById = new Map(tripStops.map(stop => [stop.id, stop]));
       const mapStatus = document.getElementById('map-status');
       const mapNote = document.getElementById('map-note');
+      const trafficCard = document.getElementById('traffic-card');
+      const trafficDot = document.getElementById('traffic-dot');
+      const trafficTitle = document.getElementById('traffic-title');
+      const trafficUpdated = document.getElementById('traffic-updated');
+      const trafficRefresh = document.getElementById('traffic-refresh');
 
       function loadLeafletAssets() {
         if (window.L) return Promise.resolve(window.L);
@@ -1153,6 +1197,7 @@
       }
 
       async function initializeLeafletFallback(reason = '高德地图暂时不可用') {
+        disableTraffic('备用矢量地图不提供实时路况');
         mapEngine = 'loading-fallback';
         markers.clear();
         routeGroup = null;
@@ -1276,6 +1321,95 @@
         });
       }
 
+      function trafficTimeLabel() {
+        return new Intl.DateTimeFormat('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(new Date());
+      }
+
+      function setTrafficState(state, message) {
+        const titles = {
+          live: '实时路况已开启',
+          loading: '实时路况更新中',
+          stale: '实时路况待确认',
+          unavailable: '实时路况不可用'
+        };
+        trafficDot.className = `traffic-dot is-${state}`;
+        trafficTitle.textContent = titles[state] || titles.unavailable;
+        trafficUpdated.textContent = message;
+        trafficCard.setAttribute('aria-busy', String(state === 'loading'));
+        trafficRefresh.disabled = state === 'loading' || !trafficLayer;
+      }
+
+      function clearTrafficWatchdog() {
+        if (trafficLoadTimer) window.clearTimeout(trafficLoadTimer);
+        trafficLoadTimer = null;
+      }
+
+      function beginTrafficLoad(message, generation) {
+        if (trafficRefreshInFlight) return false;
+        trafficRefreshInFlight = true;
+        clearTrafficWatchdog();
+        setTrafficState('loading', message);
+        trafficLoadTimer = window.setTimeout(() => {
+          if (generation !== trafficGeneration) return;
+          trafficLoadTimer = null;
+          trafficRefreshInFlight = false;
+          if (trafficLayer) setTrafficState('stale', '本次路况更新未确认，可点击刷新或重新打开页面');
+        }, 12000);
+        return true;
+      }
+
+      function disableTraffic(reason) {
+        clearTrafficWatchdog();
+        const oldLayer = trafficLayer;
+        const oldHandler = trafficCompleteHandler;
+        trafficGeneration += 1;
+        trafficLayer = null;
+        trafficCompleteHandler = null;
+        trafficRefreshInFlight = false;
+        trafficLastLoadedAt = 0;
+        try {
+          if (oldLayer && oldHandler && typeof oldLayer.off === 'function') oldLayer.off('complete', oldHandler);
+          if (oldLayer && typeof oldLayer.stopFresh === 'function') oldLayer.stopFresh();
+          if (oldLayer && mapEngine === 'amap' && map && typeof map.remove === 'function') map.remove(oldLayer);
+        } catch (error) {
+          console.warn('Traffic layer cleanup failed:', error);
+        }
+        setTrafficState('unavailable', reason);
+      }
+
+      function refreshTraffic(message = '正在获取最新实时路况…') {
+        if (mapEngine !== 'amap' || !map || trafficRefreshInFlight) return;
+        initializeTrafficLayer(message);
+      }
+
+      function initializeTrafficLayer(message = '页面打开即获取 · 每3分钟自动刷新') {
+        if (trafficRefreshInFlight) return;
+        disableTraffic('正在连接高德实时路况…');
+        const generation = trafficGeneration;
+        try {
+          const layer = new AMap.TileLayer.Traffic({
+            zIndex: 35,
+            autoRefresh: true,
+            interval: 180,
+            opacity: .92
+          });
+          trafficLayer = layer;
+          trafficCompleteHandler = () => {
+            if (generation !== trafficGeneration || trafficLayer !== layer) return;
+            clearTrafficWatchdog();
+            trafficRefreshInFlight = false;
+            trafficLastLoadedAt = Date.now();
+            setTrafficState('live', `图层接收完成：${trafficTimeLabel()} · 每3分钟自动更新`);
+          };
+          layer.on('complete', trafficCompleteHandler);
+          beginTrafficLoad(message, generation);
+          map.add(layer);
+        } catch (error) {
+          console.warn('Traffic layer initialization failed:', error);
+          if (generation === trafficGeneration) disableTraffic('高德实时路况加载失败');
+        }
+      }
+
       function amapInfoContent(stop) {
         return `<div class="amap-info"><span class="popup-day">${stop.day}</span><br><strong>${stop.name}</strong><br>${stop.summary}</div>`;
       }
@@ -1315,13 +1449,13 @@
             map,
             path,
             strokeColor: segment.color,
-            strokeWeight: 7,
-            strokeOpacity: .88,
+            strokeWeight: 4,
+            strokeOpacity: .62,
             strokeStyle: segment.to === 'xiamen' ? 'dashed' : 'solid',
             lineJoin: 'round',
             lineCap: 'round',
             showDir: true,
-            zIndex: 60
+            zIndex: 25
           });
           schematicLines.set(segment, line);
           amapOverlays.push(line);
@@ -1354,13 +1488,13 @@
                       map,
                       path: roadPath,
                       strokeColor: segment.color,
-                      strokeWeight: 7,
-                      strokeOpacity: .92,
+                      strokeWeight: 4,
+                      strokeOpacity: .72,
                       strokeStyle: segment.to === 'xiamen' ? 'dashed' : 'solid',
                       lineJoin: 'round',
                       lineCap: 'round',
                       showDir: true,
-                      zIndex: 70
+                      zIndex: 26
                     });
                     amapOverlays.push(roadLine);
                     successful += 1;
@@ -1435,6 +1569,7 @@
                 mapEngine = 'amap';
                 mapStatus.style.display = 'none';
                 mapNote.innerHTML = '高德地图 · 正在初始化路线<br><strong>精确路况请以出发当天导航为准</strong>';
+                initializeTrafficLayer();
                 drawAmapStops();
                 settled = true;
                 window.clearTimeout(timeout);
@@ -1538,6 +1673,17 @@
         button.addEventListener('click', () => focusStop(button.dataset.stop));
       });
       document.getElementById('focus-route').addEventListener('click', () => focusRoute(true));
+      trafficRefresh.addEventListener('click', () => refreshTraffic('正在手动获取最新路况…'));
+
+      window.addEventListener('pageshow', event => {
+        if (event.persisted && mapEngine === 'amap' && trafficLayer) refreshTraffic('页面已恢复，正在更新实时路况…');
+      });
+      document.addEventListener('visibilitychange', () => {
+        const staleFor = Date.now() - trafficLastLoadedAt;
+        if (document.visibilityState === 'visible' && mapEngine === 'amap' && trafficLayer && staleFor >= 180000) {
+          refreshTraffic('页面重新可见，正在更新实时路况…');
+        }
+      });
 
       const navToggle = document.querySelector('.nav-toggle');
       const navLinks = document.getElementById('nav-links');
