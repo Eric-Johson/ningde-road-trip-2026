@@ -315,6 +315,41 @@
     .leaflet-popup-content { font-family: var(--body); line-height: 1.55; }
     .popup-day { color: var(--forest); font: 800 .68rem var(--mono); letter-spacing: .08em; }
 
+    /* Weather */
+    .section--weather {
+      color: var(--white);
+      background:
+        radial-gradient(circle at 85% 12%, rgba(240,120,85,.18), transparent 20rem),
+        linear-gradient(135deg, var(--ocean-deep), #164751 58%, #245c53);
+      overflow: hidden;
+    }
+    .section--weather .eyebrow { color: #9ed0c3; }
+    .section--weather .section-heading h2 { color: var(--white); }
+    .section--weather .section-heading p { color: rgba(255,255,255,.66); }
+    .weather-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .85rem; }
+    .weather-card { min-height: 318px; display: flex; flex-direction: column; padding: 1.15rem; color: var(--ocean); background: rgba(255,255,255,.95); border: 1px solid rgba(255,255,255,.22); border-radius: 17px; box-shadow: 0 14px 34px rgba(5,26,32,.2); }
+    .weather-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: .7rem; }
+    .weather-day { display: grid; place-items: center; width: 34px; height: 34px; flex: 0 0 34px; color: var(--white); background: var(--forest); border-radius: 50%; font: 800 .7rem var(--mono); }
+    .weather-date { display: block; color: var(--rock); font: 700 .68rem var(--mono); }
+    .weather-place { display: block; margin-top: .1rem; font-family: var(--display); font-size: 1.25rem; }
+    .weather-focus { margin: .55rem 0 0; color: var(--forest); font-size: .72rem; font-weight: 750; }
+    .weather-main { display: flex; align-items: center; gap: .7rem; margin: 1.15rem 0; }
+    .weather-icon { width: 58px; height: 58px; display: grid; place-items: center; flex: 0 0 58px; color: var(--ocean); background: var(--mist); border-radius: 50%; font-size: 1.7rem; }
+    .weather-state strong { display: block; font-family: var(--display); font-size: 1.18rem; }
+    .weather-temp { display: block; margin-top: .15rem; font: 800 1.02rem var(--mono); }
+    .weather-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+    .weather-metric { padding: .62rem; background: var(--mist-light); border-radius: 10px; }
+    .weather-metric span { display: block; color: var(--rock); font-size: .64rem; }
+    .weather-metric strong { font: 800 .82rem var(--mono); }
+    .weather-advice { margin: auto 0 0; padding-top: .9rem; color: var(--rock); border-top: 1px dashed var(--line); font-size: .72rem; line-height: 1.6; }
+    .weather-card--error { justify-content: center; color: var(--rock); text-align: center; }
+    .weather-card--error strong { color: var(--ocean); font-family: var(--display); font-size: 1.1rem; }
+    .weather-loading { position: relative; overflow: hidden; color: transparent; background: #e7efec; border-radius: 7px; }
+    .weather-loading::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.8), transparent); transform: translateX(-100%); animation: weather-shimmer 1.4s infinite; }
+    .weather-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem; margin-top: 1.15rem; color: rgba(255,255,255,.55); font-size: .72rem; }
+    .weather-meta a { color: #b9ddd4; text-underline-offset: 3px; }
+    @keyframes weather-shimmer { to { transform: translateX(100%); } }
+
     /* Itinerary */
     .timeline { position: relative; max-width: 970px; margin-inline: auto; }
     .timeline::before { content: ""; position: absolute; left: 62px; top: 20px; bottom: 20px; width: 1px; background: var(--line); }
@@ -412,6 +447,7 @@
       .trip-thesis { padding-right: 0; }
       .map-frame { min-height: 520px; }
       .food-grid { grid-template-columns: repeat(2, 1fr); }
+      .weather-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .peak-card { position: relative; top: auto; }
     }
 
@@ -452,6 +488,8 @@
       details.day-card summary, .day-body { padding-left: 1rem; padding-right: 1rem; }
       .schedule li { grid-template-columns: 72px 1fr; gap: .5rem; }
       .food-grid { grid-template-columns: 1fr; }
+      .weather-grid { display: flex; margin-right: -14px; padding-right: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+      .weather-card { min-width: min(82vw, 310px); scroll-snap-align: start; }
       .food-card { min-height: 0; }
       .footer .shell { display: block; }
     }
@@ -467,7 +505,12 @@
       .section { padding: 2.2rem 0; break-inside: avoid; }
       details.day-card:not([open]) > *:not(summary) { display: block; }
       .map-frame { min-height: 380px; box-shadow: none; border: 1px solid var(--line); }
-      .food-card, details.day-card { break-inside: avoid; box-shadow: none; }
+      .food-card, .weather-card, details.day-card { break-inside: avoid; box-shadow: none; }
+      .weather-grid { display: grid; grid-template-columns: repeat(2, 1fr); margin-right: 0; padding-right: 0; overflow: visible; }
+      .weather-card { min-width: 0; }
+      .section--weather { color: var(--ink); background: #fff; border-block: 1px solid var(--line); }
+      .section--weather .section-heading h2 { color: var(--ink); }
+      .section--weather .section-heading p, .weather-meta { color: var(--rock); }
       .sources { color: var(--ink); background: #fff; border-top: 1px solid var(--line); }
       .sources h2 { color: var(--ink); }
       .source-links a { color: var(--forest); }
@@ -493,6 +536,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#overview">路线概览</a></li>
         <li><a href="#map-section">路线地图</a></li>
+        <li><a href="#weather">沿途天气</a></li>
         <li><a href="#itinerary">五日行程</a></li>
         <li><a href="#food">推荐美食</a></li>
         <li><a href="#tips">避峰锦囊</a></li>
@@ -591,10 +635,32 @@
       </div>
     </section>
 
+    <section class="section section--weather" id="weather" aria-labelledby="weather-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">03 / Weather window</p>
+          <h2 id="weather-title">五日沿途天气</h2>
+          <p>按每天主要活动地点匹配预报。山顶、滩涂和高速沿线可能与城区预报不同，临出发前请再次刷新并查看预警。</p>
+        </div>
+        <div class="weather-grid" id="weather-cards" aria-live="polite" aria-busy="true">
+          <article class="weather-card"><div class="weather-loading" style="height:34px;width:72%">加载天气</div><div class="weather-loading" style="height:86px;margin:25px 0">加载天气</div><div class="weather-loading" style="height:64px">加载天气</div></article>
+          <article class="weather-card"><div class="weather-loading" style="height:34px;width:72%">加载天气</div><div class="weather-loading" style="height:86px;margin:25px 0">加载天气</div><div class="weather-loading" style="height:64px">加载天气</div></article>
+          <article class="weather-card"><div class="weather-loading" style="height:34px;width:72%">加载天气</div><div class="weather-loading" style="height:86px;margin:25px 0">加载天气</div><div class="weather-loading" style="height:64px">加载天气</div></article>
+          <article class="weather-card"><div class="weather-loading" style="height:34px;width:72%">加载天气</div><div class="weather-loading" style="height:86px;margin:25px 0">加载天气</div><div class="weather-loading" style="height:64px">加载天气</div></article>
+          <article class="weather-card"><div class="weather-loading" style="height:34px;width:72%">加载天气</div><div class="weather-loading" style="height:86px;margin:25px 0">加载天气</div><div class="weather-loading" style="height:64px">加载天气</div></article>
+        </div>
+        <noscript><p>浏览器未启用JavaScript，无法自动读取天气预报。请在出发前通过常用天气服务核实。</p></noscript>
+        <div class="weather-meta">
+          <span id="weather-updated">正在读取最新预报…</span>
+          <span><a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Weather data by Open-Meteo.com</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a> · 数据按原始预报重新编排</span>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="itinerary" aria-labelledby="itinerary-title">
       <div class="shell">
         <div class="section-heading">
-          <p class="eyebrow">03 / Five-day rhythm</p>
+          <p class="eyebrow">04 / Five-day rhythm</p>
           <h2 id="itinerary-title">每天只留一个主角</h2>
           <p>长途日不塞重景点，霞浦不追日出，返程日不安排上午游览。点击日期卡片可展开或收起详情。</p>
         </div>
@@ -716,7 +782,7 @@
     <section class="section section--tint" id="food" aria-labelledby="food-title">
       <div class="shell">
         <div class="section-heading">
-          <p class="eyebrow">04 / Local table</p>
+          <p class="eyebrow">05 / Local table</p>
           <h2 id="food-title">沿途推荐美食</h2>
           <p>每天只安排一顿目的地特色正餐，其余保持清淡、快速。给孩子留熟悉口味，也给旅途留一点余地。</p>
         </div>
@@ -752,7 +818,7 @@
     <section class="section" id="tips" aria-labelledby="tips-title">
       <div class="shell">
         <div class="section-heading">
-          <p class="eyebrow">05 / Before the road</p>
+          <p class="eyebrow">06 / Before the road</p>
           <h2 id="tips-title">避峰不是赌一条小路</h2>
           <p>真正有效的是早出、减少转场、实时复核和保留降级方案，而不是在拥堵时盲目改走山区国省道。</p>
         </div>
@@ -813,6 +879,121 @@
         { id: 'xiapu', name: '霞浦', coords: [26.8850, 120.0050], day: 'Day 2—4', summary: '三沙—东壁海岸慢游' },
         { id: 'ningde', name: '宁德', coords: [26.6650, 119.5470], day: 'Day 4—5', summary: '蕉城休整，美食收尾' }
       ];
+
+      const WEATHER_LOCATIONS = Object.freeze({
+        yongtai: { name: '永泰', latitude: 25.8660, longitude: 118.9327 },
+        xiapu: { name: '霞浦', latitude: 26.8850, longitude: 120.0050 },
+        ningde: { name: '宁德', latitude: 26.6650, longitude: 119.5470 }
+      });
+
+      const WEATHER_PLAN = Object.freeze([
+        { day: 'D1', date: '2026-10-02', locationId: 'yongtai', focus: '抵达永泰' },
+        { day: 'D2', date: '2026-10-03', locationId: 'yongtai', focus: '云顶山林短线' },
+        { day: 'D3', date: '2026-10-04', locationId: 'xiapu', focus: '三沙—东壁海岸' },
+        { day: 'D4', date: '2026-10-05', locationId: 'ningde', focus: '轻转场至蕉城' },
+        { day: 'D5', date: '2026-10-06', locationId: 'ningde', focus: '清晨返厦' }
+      ]);
+
+      function weatherCodeInfo(code) {
+        if (code === 0) return { icon: '☀', label: '晴朗' };
+        if (code === 1 || code === 2) return { icon: '◐', label: '晴间多云' };
+        if (code === 3) return { icon: '☁', label: '阴天' };
+        if (code === 45 || code === 48) return { icon: '≋', label: '有雾' };
+        if (code >= 51 && code <= 67) return { icon: '☂', label: '有雨' };
+        if (code >= 71 && code <= 77) return { icon: '❄', label: '有雪' };
+        if (code >= 80 && code <= 82) return { icon: '☔', label: '阵雨' };
+        if (code === 85 || code === 86) return { icon: '❄', label: '阵雪' };
+        if (code >= 95) return { icon: 'ϟ', label: '雷雨' };
+        return { icon: '○', label: '天气多变' };
+      }
+
+      function rounded(value) {
+        return typeof value === 'number' && Number.isFinite(value) ? Math.round(value) : null;
+      }
+
+      function weatherAdvice(item, daily, index) {
+        const rain = rounded(daily.precipitation_probability_max[index]) || 0;
+        const wind = rounded(daily.wind_speed_10m_max[index]) || 0;
+        const code = rounded(daily.weather_code[index]);
+        const high = rounded(daily.temperature_2m_max[index]);
+        if (code !== null && code >= 95) return '雷雨时取消山顶、海边和户外停留，先确认道路预警。';
+        if (item.focus.includes('云顶') && (rain >= 40 || wind >= 25)) return '云顶可能湿滑或风大，优先启用室内/直达霞浦备选。';
+        if (item.locationId === 'xiapu' && wind >= 28) return '海边阵风偏强，远离礁石和无护栏临海位置。';
+        if (item.focus.includes('返厦') && rain >= 40) return '返程可能遇雨，提前出发并增加跟车距离。';
+        if (rain >= 50) return '随车带雨具和防滑鞋，户外项目保留随时缩短的余地。';
+        if (high !== null && high >= 30) return '午后偏热，海边活动避开暴晒并及时补水。';
+        return '天气条件相对平稳，仍需在出发当日复核临近预警。';
+      }
+
+      async function fetchWeather(location) {
+        const url = new URL('https://api.open-meteo.com/v1/forecast');
+        url.search = new URLSearchParams({
+          latitude: String(location.latitude),
+          longitude: String(location.longitude),
+          daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max',
+          timezone: 'Asia/Shanghai',
+          start_date: '2026-10-02',
+          end_date: '2026-10-06'
+        }).toString();
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 9000);
+        try {
+          const response = await fetch(url, { signal: controller.signal });
+          if (!response.ok) throw new Error(`Weather HTTP ${response.status}`);
+          const data = await response.json();
+          const requiredFields = ['time', 'weather_code', 'temperature_2m_max', 'temperature_2m_min', 'precipitation_probability_max', 'wind_speed_10m_max'];
+          const validDaily = data.daily && requiredFields.every(field => Array.isArray(data.daily[field]) && data.daily[field].length === data.daily.time.length);
+          if (!validDaily) throw new Error('Weather response missing required daily data');
+          return data;
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      function renderWeatherCard(item, data) {
+        const location = WEATHER_LOCATIONS[item.locationId];
+        if (!data) {
+          return `<article class="weather-card weather-card--error"><strong>${item.day} · ${location.name}</strong><p>${item.date.slice(5).replace('-', '.')} 暂无预报</p><small>请稍后刷新，或使用常用天气服务核实。</small></article>`;
+        }
+        const index = data.daily.time.indexOf(item.date);
+        if (index < 0) {
+          return `<article class="weather-card weather-card--error"><strong>${item.day} · ${location.name}</strong><p>该日期暂不在预报范围</p><small>越接近出发日，预报越完整。</small></article>`;
+        }
+        const code = rounded(data.daily.weather_code[index]);
+        const condition = weatherCodeInfo(code);
+        const high = rounded(data.daily.temperature_2m_max[index]);
+        const low = rounded(data.daily.temperature_2m_min[index]);
+        const rain = rounded(data.daily.precipitation_probability_max[index]);
+        const wind = rounded(data.daily.wind_speed_10m_max[index]);
+        const value = (number, suffix) => number === null ? '—' : `${number}${suffix}`;
+        return `<article class="weather-card">
+          <div class="weather-card-head"><div><span class="weather-date">${item.date.slice(5).replace('-', '.')}</span><strong class="weather-place">${location.name}</strong></div><span class="weather-day">${item.day}</span></div>
+          <p class="weather-focus">${item.focus}</p>
+          <div class="weather-main"><span class="weather-icon" aria-hidden="true">${condition.icon}</span><div class="weather-state"><strong>${condition.label}</strong><span class="weather-temp">${value(high, '°')} / ${value(low, '°')}</span></div></div>
+          <div class="weather-metrics"><div class="weather-metric"><span>最高降雨概率</span><strong>${value(rain, '%')}</strong></div><div class="weather-metric"><span>最大风速</span><strong>${value(wind, ' km/h')}</strong></div></div>
+          <p class="weather-advice">${weatherAdvice(item, data.daily, index)}</p>
+        </article>`;
+      }
+
+      async function loadWeather() {
+        const container = document.getElementById('weather-cards');
+        const updated = document.getElementById('weather-updated');
+        const entries = Object.entries(WEATHER_LOCATIONS);
+        const results = await Promise.allSettled(entries.map(([, location]) => fetchWeather(location)));
+        const weatherByLocation = new Map();
+        results.forEach((result, index) => {
+          if (result.status === 'fulfilled') weatherByLocation.set(entries[index][0], result.value);
+          else console.warn(`Weather unavailable for ${entries[index][0]}:`, result.reason);
+        });
+        container.innerHTML = WEATHER_PLAN.map(item => renderWeatherCard(item, weatherByLocation.get(item.locationId))).join('');
+        container.setAttribute('aria-busy', 'false');
+        if (weatherByLocation.size) {
+          const time = new Intl.DateTimeFormat('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date());
+          updated.textContent = `页面读取时间：${time} · 预报会持续变化`;
+        } else {
+          updated.textContent = '天气服务暂时不可用，请稍后刷新并在出发前复核。';
+        }
+      }
 
       const routeSegments = [
         {
@@ -1379,6 +1560,7 @@
 
       document.getElementById('footer-year').textContent = String(new Date().getFullYear());
       mapReadyPromise = initializeMap();
+      loadWeather();
     })();
   </script>
 </body>
