@@ -427,11 +427,8 @@
 
     /* Xiaohongshu reviews */
     .section--xhs { background: #fbf6f2; border-block: 1px solid rgba(240,120,85,.14); }
-    .xhs-method { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.2rem; align-items: start; margin-bottom: 1.6rem; padding: 1.1rem 1.3rem; background: var(--white); border: 1px solid var(--line); border-radius: 14px; font-size: .86rem; }
-    .xhs-method p { margin: 0; color: var(--rock); }
-    .xhs-method strong { color: var(--ink); }
-    .xhs-badge { display: inline-block; margin-right: .45rem; padding: .12rem .5rem; color: #a3122c; background: #fff0f2; border: 1px solid rgba(163,18,44,.22); border-radius: 6px; font-size: .72rem; font-weight: 800; }
-    .xhs-legend { display: grid; gap: .35rem; margin: 0; padding: 0; list-style: none; color: var(--rock); font-size: .8rem; }
+    .xhs-method { margin-bottom: 1.6rem; padding: .9rem 1.3rem; background: var(--white); border: 1px solid var(--line); border-radius: 14px; }
+    .xhs-legend { display: flex; flex-wrap: wrap; gap: .45rem 1.8rem; margin: 0; padding: 0; list-style: none; color: var(--rock); font-size: .8rem; }
     .xhs-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
     .xhs-card { display: flex; flex-direction: column; padding: 1.35rem; background: var(--white); border: 1px solid var(--line); border-radius: 18px; }
     .xhs-card h3 { margin: .45rem 0 .2rem; font-family: var(--display); font-size: 1.6rem; }
@@ -501,7 +498,7 @@
       .trip-thesis { padding-right: 0; }
       .map-frame { min-height: 520px; }
       .food-grid { grid-template-columns: repeat(2, 1fr); }
-      .xhs-grid, .xhs-method { grid-template-columns: 1fr; }
+      .xhs-grid { grid-template-columns: 1fr; }
       .weather-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .peak-card { position: relative; top: auto; }
     }
@@ -902,10 +899,8 @@
         <div class="section-heading">
           <p class="eyebrow">06 / Xiaohongshu notes</p>
           <h2 id="xhs-title">小红书上的真实口碑</h2>
-          <p>筛掉广告和软广后，只留下和这趟轻松亲子节奏相符的建议。</p>
         </div>
         <div class="xhs-method">
-          <p><span class="xhs-badge">小红书</span>2026-09-30 用本人账号只读检索 9 组关键词，读了 38 篇笔记和作者主页。只采用写了具体日期、花费、缺点或带娃细节的普通用户笔记，并对照官方资料和其他平台游记；不点名店铺。内容为概括转述，不代表出行当天实况。</p>
           <ul class="xhs-legend" aria-label="可信度说明">
             <li><span class="xhs-grade">A</span>多篇独立笔记一致，且与官方或其他平台资料相符</li>
             <li><span class="xhs-grade xhs-grade--b">B</span>两篇独立笔记一致，或一篇笔记加官方资料印证</li>
