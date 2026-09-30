@@ -618,7 +618,7 @@
         <div class="trip-thesis">
           <p class="eyebrow">01 / Route brief</p>
           <blockquote id="overview-title">这不是一条“全部打卡”的路线，而是一条<em>云顶入山、屏南访村、周宁探幽</em>的亲子山地环线。</blockquote>
-          <p>第一晚直接住永泰云顶蚂蚁窝蛋居酒店，次日上午减少一次县城往返；住宿采用云顶1晚、屏南1晚、周宁2晚。酒店点位以云顶核心区示意，最终入口必须以订单和酒店确认地址为准。</p>
+          <p>第一晚直接住永泰云顶蚂蚁窝蛋居酒店，次日上午减少一次县城往返；住宿采用云顶1晚、屏南1晚、周宁2晚。酒店点位采用高德POI坐标，夜间入口和停车以订单联系人确认为准。</p>
           <div class="button-row">
             <button class="btn btn--primary" type="button" id="focus-route">查看完整路线 <span aria-hidden="true">↗</span></button>
             <a class="btn btn--secondary" href="#itinerary">展开五日安排 <span aria-hidden="true">↓</span></a>
@@ -638,7 +638,7 @@
         <div class="section-heading">
           <p class="eyebrow">02 / Route map</p>
           <h2 id="map-title">先入山，再访古村</h2>
-          <p>高德地图按真实驾车道路绘制厦门、云顶蚂蚁窝酒店（示意点）、屏南与周宁环线；酒店最终入口以订单地址为准。</p>
+          <p>高德地图按真实驾车道路绘制厦门、云顶蚂蚁窝酒店（高德POI）、屏南与周宁环线；酒店最终入口以订单地址为准。</p>
         </div>
         <div class="map-layout">
           <div class="map-frame">
@@ -725,16 +725,17 @@
               </summary>
               <div class="day-body">
                 <ol class="schedule">
-                  <li><time>15:00</time><div><strong>电话确认酒店夜间入口</strong><p>确认最晚入住、景区闸口、停车点和订单内导航地址；公开地图仅使用云顶核心区示意点。</p></div></li>
+                  <li><time>15:00</time><div><strong>电话确认酒店夜间入口</strong><p>确认最晚入住、景区闸口、停车点和订单内导航地址；页面坐标采用高德POI位置。</p></div></li>
                   <li><time>16:00</time><div><strong>从厦门直达云顶</strong><p>国庆首日下午可能拥堵，按5—7小时准备；途中持续查看天气和实时路况。</p></div></li>
                   <li><time>18:30±</time><div><strong>服务区晚餐与休息</strong><p>每约2小时停车活动，进入云顶山路前确认精神状态、油电和酒店联络畅通。</p></div></li>
                   <li><time>21:00—23:30</time><div><strong>抵达蚂蚁窝酒店</strong><p>山路降速、不开远光追车；若酒店无法确认夜间通行或天气恶化，立即执行县城住宿备选。</p></div></li>
                 </ol>
-                <div class="note-box"><strong>酒店与停车核验：</strong>地图优先搜索“永泰云顶蚂蚁窝蛋居酒店”（携程现名“永泰云顶蚂蚁窝蛋居民宿”），范围地址为“福州市永泰县云顶景区内，近天池景区”。公开资料仅确认景区门口有停车场，未确认酒店住客的夜间停车点、车辆入口或景交上车点，必须以订单联系人当天发送的停车POI为准。中国云顶景区咨询：<a href="tel:059188001601">0591-88001601</a>（非酒店前台）。</div>
+                <div class="note-box"><strong>酒店与停车：</strong>高德POI“永泰云顶蚂蚁窝蛋居民宿”，地址：岭路乡长坑村187县道天池景区正对面。高德登记电话：<a href="tel:059124769999">0591-24769999</a>、<a href="tel:13774600034">137 7460 0034</a>（来自高德POI，出发前请用订单电话核实）。高德显示最近停车场：云顶旅游度假区天池景区停车场（距POI约21 m），未说明是否对住客开放或可夜间停放，以酒店通知为准。中国云顶景区咨询：<a href="tel:059188001601">0591-88001601</a>（非酒店前台）。</div>
                 <div class="day-actions">
-                  <button class="btn btn--small btn--primary map-focus" type="button" data-stop="yunding" aria-label="在地图上定位云顶景区范围示意点">地图示意点</button>
-                  <a class="btn btn--small btn--secondary" href="https://uri.amap.com/search?keyword=永泰云顶蚂蚁窝蛋居酒店&amp;city=福州&amp;src=ningde-road-trip-2026&amp;callnative=0" target="_blank" rel="noopener noreferrer">高德搜索并导航</a>
-                  <a class="btn btn--small btn--secondary" href="https://map.360.cn/?pid=dbf7e5bdf04fe135&amp;new=1&amp;src=onebox" target="_blank" rel="noopener noreferrer">地图POI参考</a>
+                  <button class="btn btn--small btn--primary map-focus" type="button" data-stop="yunding" aria-label="在地图上定位永泰云顶蚂蚁窝蛋居民宿高德POI位置">地图定位</button>
+                  <a class="btn btn--small btn--secondary" href="https://uri.amap.com/navigation?from=118.094377,24.477153,厦门&amp;to=118.99915,25.76683,永泰云顶蚂蚁窝蛋居民宿&amp;mode=car&amp;policy=1&amp;src=ningde-road-trip-2026&amp;coordinate=gaode&amp;callnative=0" target="_blank" rel="noopener noreferrer">高德导航到酒店</a>
+                  <a class="btn btn--small btn--secondary" href="https://uri.amap.com/marker?position=118.99915,25.76683&amp;name=永泰云顶蚂蚁窝蛋居民宿&amp;src=ningde-road-trip-2026&amp;coordinate=gaode&amp;callnative=0" target="_blank" rel="noopener noreferrer">高德查看酒店POI</a>
+                  <a class="btn btn--small btn--secondary" href="https://uri.amap.com/navigation?from=&amp;to=118.999359,25.76681,云顶旅游度假区天池景区停车场&amp;mode=car&amp;policy=1&amp;src=ningde-road-trip-2026&amp;coordinate=gaode&amp;callnative=0" target="_blank" rel="noopener noreferrer">导航到最近停车场</a>
                 </div>
               </div>
             </details>
@@ -936,13 +937,14 @@
 
       const tripStops = [
         { id: 'xiamen', name: '厦门', coords: [24.4798, 118.0894], day: 'Day 1 / Day 5', summary: '下午出发，返程终点' },
-        { id: 'yunding', name: '云顶景区范围示意点', coords: [25.7645422, 119.0048643], day: 'Day 1—2', summary: '非酒店精确位置 / 近天池景区' },
+        // WGS84 converted from AMap POI B0FFH8F056 (GCJ-02 118.99915,25.76683)
+        { id: 'yunding', name: '永泰云顶蚂蚁窝蛋居民宿', coords: [25.7697889, 118.9944381], day: 'Day 1—2', summary: '高德POI位置 / 天池景区正对面' },
         { id: 'pingnan', name: '屏南', coords: [26.9047319, 119.0040339], day: 'Day 2—3', summary: '龙潭村与四坪村' },
         { id: 'zhouning', name: '周宁', coords: [27.1072041, 119.3339545], day: 'Day 3—5', summary: '连住两晚，仙风山 / 蝙蝠洞' }
       ];
 
       const WEATHER_LOCATIONS = Object.freeze({
-        yunding: { name: '云顶', latitude: 25.7645422, longitude: 119.0048643 },
+        yunding: { name: '云顶', latitude: 25.7697889, longitude: 118.9944381 },
         pingnan: { name: '屏南', latitude: 26.9047319, longitude: 119.0040339 },
         zhouning: { name: '周宁', latitude: 27.1072041, longitude: 119.3339545 }
       });
